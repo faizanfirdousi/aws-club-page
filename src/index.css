@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-aws: #FF9900;
+  --color-brand-dark: #030303;
+  --color-brand-card: #13041f;
+}
+
+body {
+  @apply bg-transparent text-white font-sans antialiased;
+}

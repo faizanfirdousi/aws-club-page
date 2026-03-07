@@ -76,12 +76,9 @@ export default function ScrollFAQAccordion({
       className={cn("max-w-4xl mx-auto text-center py-16", className)}
     >
       <h2 className="text-3xl md:text-4xl font-bold mb-2">
-        Technical{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-rose-300">
-          Queries
-        </span>
+        Technical Queries
       </h2>
-      <p className="text-gray-400 mb-10 text-lg">
+      <p className="text-gray-500 mb-10 text-lg">
         Everything you need to know about joining and succeeding in the AWS Community.
       </p>
 

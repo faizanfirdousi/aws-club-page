@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
+  { name: "Team", href: "#about" },
   { name: "Events", href: "#events" },
   { name: "Gallery", href: "#gallery" },
   { name: "FAQ", href: "#faq" },
@@ -21,102 +21,81 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-black/30 backdrop-blur-xl border-b border-white/10 sticky top-0 z-40 shadow-md">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16">
-          <div className="flex items-center">
-            <a
-              href="#hero"
-              onClick={(e) => scrollTo(e, "#hero")}
-              className="flex-shrink-0 flex items-center"
-            >
-              <span className="text-base sm:text-xl font-bold tracking-wider flex items-center gap-2">
-                <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-rose-400 bg-clip-text text-transparent">
-                  AWS Cloud Club
-                </span>
-                <span className="text-xs px-2 py-0.5 rounded-full border border-white/10 text-gray-300">
-                  I²IT
-                </span>
-              </span>
-            </a>
-          </div>
-          <div className="hidden md:flex justify-center">
-            <div className="flex items-baseline space-x-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => scrollTo(e, link.href)}
-                  className="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 text-gray-300 hover:text-white hover:bg-white/5"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="flex md:hidden ml-auto">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-200"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+    <header className="fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none pt-4 px-4">
+      {/* Floating pill navbar */}
+      <nav className="pointer-events-auto flex items-center gap-1 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 shadow-lg shadow-black/10 px-2 py-1.5 sm:px-3 sm:py-2">
 
+        {/* Desktop nav links */}
+        <div className="hidden md:flex items-center gap-0.5">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => scrollTo(e, link.href)}
+              className="px-3.5 py-1.5 rounded-full text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        {/* CTA pill on desktop */}
+        <a
+          href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:block ml-1 px-4 py-1.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-gray-200 transition-colors duration-200"
+        >
+          Join Us
+        </a>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          type="button"
+          className="md:hidden flex items-center justify-center w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-200 ml-1"
+          aria-controls="mobile-menu"
+          aria-expanded={isOpen}
+        >
+          <span className="sr-only">Open menu</span>
+          {!isOpen ? (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
+        </button>
+      </nav>
+
+      {/* Mobile dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-black/40 backdrop-blur-xl border-t border-white/10" id="mobile-menu">
-          <div className="px-4 pt-3 pb-4 space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => scrollTo(e, link.href)}
-                className="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 text-gray-300 hover:text-white hover:bg-white/5"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
+        <div
+          className="pointer-events-auto md:hidden absolute top-full mt-2 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm rounded-2xl bg-white/10 backdrop-blur-xl border border-white/15 shadow-lg shadow-black/10 py-3 px-4"
+          id="mobile-menu"
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => scrollTo(e, link.href)}
+              className="block px-3 py-2.5 rounded-xl text-base font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors duration-200"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mt-2 text-center px-4 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-gray-200 transition-colors duration-200"
+          >
+            Join Us
+          </a>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

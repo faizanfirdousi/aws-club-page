@@ -27,7 +27,7 @@ const originFromOffset = (offset: Offset, cell: number) => ({
 
 const Noise: React.FC<{ refresh?: number; alpha?: number }> = ({
   refresh = 2,
-  alpha = 32,
+  alpha = 18,
 }) => {
   const ref = useRef<HTMLCanvasElement | null>(null);
 
@@ -101,7 +101,7 @@ const MovingGrid: React.FC<GridProps> = ({
   className = "",
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const raf = useRef<number>();
+  const raf = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -141,8 +141,8 @@ const MovingGrid: React.FC<GridProps> = ({
           ch / 2,
           Math.sqrt(cw * cw + ch * ch) / 2,
         );
-        grad.addColorStop(0, "rgba(15,23,42,0.25)");
-        grad.addColorStop(1, "#020010");
+        grad.addColorStop(0, "rgba(20,5,35,0.25)");
+        grad.addColorStop(1, "#0a0012");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, cw, ch);
       }
@@ -179,15 +179,15 @@ interface HoverProps {
 
 const SquaresInteractive: React.FC<HoverProps> = ({
   squareSize,
-  hoverFillColor = "rgba(109,40,217,0.25)",
-  hoverStrokeColor = "rgba(168,85,247,0.9)",
-  hoverGlowColor = "rgba(147,51,234,0.5)",
+  hoverFillColor = "rgba(168,85,247,0.25)",
+  hoverStrokeColor = "rgba(217,70,239,0.9)",
+  hoverGlowColor = "rgba(168,85,247,0.5)",
   gridOffsetRef,
   className = "",
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hoveredRef = useRef<{ x: number; y: number } | null>(null);
-  const raf = useRef<number>();
+  const raf = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -307,15 +307,15 @@ export default function Component({
   direction = "diagonal",
   speed = 0.6,
   squareSize = 44,
-  borderColor = "rgba(148,163,184,0.45)",
+  borderColor = "rgba(168,85,247,0.12)",
   vignette = true,
-  hoverFillColor = "rgba(109,40,217,0.12)",
-  hoverStrokeColor = "rgba(168,85,247,0.35)",
-  hoverGlowColor = "rgba(147,51,234,0.35)",
+  hoverFillColor = "rgba(168,85,247,0.12)",
+  hoverStrokeColor = "rgba(217,70,239,0.35)",
+  hoverGlowColor = "rgba(168,85,247,0.35)",
   className = "",
 }: CombinedProps) {
   const gridOffsetRef = useRef<Offset>({ x: 0, y: 0 });
-  const raf = useRef<number>();
+  const raf = useRef<number | undefined>(undefined);
 
   // Single animation loop for the offset shared by both canvases
   useEffect(() => {
@@ -351,10 +351,10 @@ export default function Component({
 
   return (
     <div
-      className={`absolute inset-0 -z-10 bg-[#020010] ${className}`}
+      className={`fixed inset-0 z-0 bg-[#0a0012] ${className}`}
     >
       {/* soft spotlight tone */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_620px_at_50%_200px,rgba(129,140,248,0.55),transparent_75%)]" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_620px_at_50%_200px,rgba(168,85,247,0.45),transparent_75%)]" />
 
       {/* grid layer (optional) */}
       {showGrid && (

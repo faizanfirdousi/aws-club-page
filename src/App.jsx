@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
 import EventCard from "./components/EventCard";
 import MeetUsSection from "./components/MeetUsSection";
-import LiquidGradientBackground from "@/components/ui/flow-gradient-hero-section";
+import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
 
 const latestEvent = {
@@ -51,31 +50,10 @@ const faqData = [
 ];
 
 function App() {
-  const [isPaused, setIsPaused] = useState(false);
-
   return (
     <div className="relative min-h-screen text-white">
-      {/* Full-page animated gradient background */}
-      <LiquidGradientBackground isPaused={isPaused} />
-
-      {/* Pause/Play Button */}
-      <button
-        onClick={() => setIsPaused(!isPaused)}
-        className="fixed top-20 right-2 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/70 hover:text-white hover:bg-white/20 transition-all duration-300 cursor-pointer shadow-lg"
-        aria-label={isPaused ? "Play animation" : "Pause animation"}
-        title={isPaused ? "Play animation" : "Pause animation"}
-      >
-        {isPaused ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5.14v14l11-7-11-7z" />
-          </svg>
-        ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="6" y="4" width="4" height="16" rx="1" />
-            <rect x="14" y="4" width="4" height="16" rx="1" />
-          </svg>
-        )}
-      </button>
+      {/* Full-page animated noise gradient with squares background */}
+      <NoiseDarkGradient />
 
       {/* Main content layer */}
       <div className="relative z-10">
@@ -87,12 +65,10 @@ function App() {
           className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
         >
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-rose-300">
-                AWS Cloud Club I²IT
-              </span>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white">
+              AWS Cloud Club I²IT
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-10">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10">
               A student-driven community at I²IT where you explore AWS, cloud,
               and modern infrastructure through hands-on workshops, projects,
               and peer learning.
@@ -100,15 +76,15 @@ function App() {
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <a
                 href="#about"
-                className="bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-500 text-white font-bold py-3 px-8 rounded-full hover:brightness-110 transition-transform duration-300 hover:-translate-y-1 shadow-lg shadow-fuchsia-500/40"
+                className="bg-white text-black font-semibold py-3 px-8 rounded-full hover:bg-gray-200 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
               >
                 Discover Our Mission
               </a>
               <a
                 href="#events"
-                className="bg-white/5 backdrop-blur-md text-gray-100 font-bold py-3 px-8 rounded-full border border-white/15 hover:border-fuchsia-300/70 hover:bg-white/10 transition-colors duration-300"
+                className="bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
               >
-                Upcoming Meetups
+                Upcoming Events
               </a>
             </div>
           </div>
@@ -211,12 +187,9 @@ function App() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Upcoming{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-rose-300">
-                  Meetups
-                </span>
+              Upcoming Events
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
                 Join us at our next event. Learn, build, and grow your cloud
                 skillset alongside peers.
               </p>
@@ -229,7 +202,7 @@ function App() {
                 href="https://www.meetup.com/aws-i2it/events/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white/5 backdrop-blur-md text-gray-100 font-bold py-3 px-8 rounded-full border border-white/15 hover:border-fuchsia-300/70 hover:bg-white/10 transition-colors duration-300"
+                className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
               >
                 See All Events →
               </a>
@@ -245,19 +218,16 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Community{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-rose-300">
-                  Moments
-                </span>
+                Community Moments
               </h2>
-              <p className="max-w-2xl mx-auto text-lg text-gray-400">
+              <p className="max-w-2xl mx-auto text-lg text-gray-500">
                 A visual timeline of our journey, events, and the amazing people
                 who make up our community.
               </p>
             </div>
 
             {/* Coming Soon Banner */}
-            <div className="relative flex items-center justify-center w-full h-[280px] sm:h-[400px] md:h-[500px] rounded-3xl bg-white/[0.03] border border-fuchsia-500/20 backdrop-blur-xl shadow-2xl overflow-hidden group hover:border-fuchsia-400/40 transition-all duration-500">
+            <div className="relative flex items-center justify-center w-full h-[280px] sm:h-[400px] md:h-[500px] rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl overflow-hidden group hover:border-white/20 transition-all duration-500">
               <div className="absolute top-0 left-1/4 w-72 h-72 bg-fuchsia-500 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-pulse"></div>
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-fuchsia-400/60 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-400/40 to-transparent"></div>
@@ -272,7 +242,7 @@ function App() {
                     Under Construction
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-fuchsia-300 to-rose-300">
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-4 text-white">
                   Coming Soon
                 </h3>
                 <p className="text-gray-400/80 text-lg max-w-md mx-auto">
@@ -308,7 +278,7 @@ function App() {
                   href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-500 text-white font-bold py-4 px-10 rounded-full hover:brightness-110 transition-transform duration-300 hover:-translate-y-1 shadow-lg shadow-fuchsia-500/40"
+                  className="inline-block bg-white text-black font-semibold py-4 px-10 rounded-full hover:bg-gray-200 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
                 >
                   Join the Community
                 </a>

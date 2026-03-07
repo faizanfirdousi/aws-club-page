@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <span className="text-xl font-bold tracking-wider flex items-center gap-2">
-              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-rose-400 bg-clip-text text-transparent">
+              <span className="text-white">
                 AWS Cloud Club
               </span>
               <span className="text-xs px-2 py-0.5 rounded-full border border-white/10 text-gray-300">

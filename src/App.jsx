@@ -65,6 +65,14 @@ function App() {
           className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
         >
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="flex justify-center mb-5">
+              <img
+                src="/background_removed.png"
+                alt="AWS Cloud Club I²IT logo"
+                className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain drop-shadow-[0_0_26px_rgba(250,250,255,0.4)]"
+                loading="lazy"
+              />
+            </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white">
               AWS Cloud Club I²IT
             </h1>
@@ -75,7 +83,7 @@ function App() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <a
-                href="#about"
+                href="#why-join"
                 className="bg-white text-black font-semibold py-3 px-8 rounded-full hover:bg-gray-200 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
               >
                 Discover Our Mission
@@ -91,7 +99,7 @@ function App() {
         </section>
 
         {/* ═══════════════ WHY JOIN US ═══════════════ */}
-        <section className="py-16 md:py-24">
+        <section id="why-join" className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">

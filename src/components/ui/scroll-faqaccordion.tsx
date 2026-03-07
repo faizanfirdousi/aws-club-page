@@ -5,9 +5,6 @@ import { motion } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface FAQItem {
   id: number;
@@ -31,48 +28,9 @@ export default function ScrollFAQAccordion({
   answerClassName,
 }: ScrollFAQAccordionProps) {
   const [openItem, setOpenItem] = React.useState<string | null>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const contentRefs = React.useRef<Map<string, HTMLDivElement>>(new Map());
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger);
-    }
-  }, []);
-
-  useGSAP(() => {
-    if (!containerRef.current || data.length === 0) return;
-
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: `+=${data.length * 200}`,
-        scrub: 0.3,
-        pin: true,
-        markers: false,
-      },
-    });
-
-    data.forEach((item, index) => {
-      const contentRef = contentRefs.current.get(item.id.toString());
-      if (contentRef) {
-        tl.add(() => {
-          setOpenItem(item.id.toString());
-        }, index * 2);
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [data]);
 
   return (
     <div
-      ref={containerRef}
       className={cn("max-w-4xl mx-auto text-center py-16", className)}
     >
       <h2 className="text-3xl md:text-4xl font-bold mb-2">
@@ -82,7 +40,12 @@ export default function ScrollFAQAccordion({
         Everything you need to know about joining and succeeding in the AWS Community.
       </p>
 
-      <Accordion.Root type="single" collapsible value={openItem || ""}>
+      <Accordion.Root
+        type="single"
+        collapsible
+        value={openItem || ""}
+        onValueChange={(value) => setOpenItem(value || null)}
+      >
         {data.map((item) => (
           <Accordion.Item value={item.id.toString()} key={item.id} className="mb-6">
             <Accordion.Header>
@@ -125,10 +88,7 @@ export default function ScrollFAQAccordion({
 
             <Accordion.Content asChild forceMount>
               <motion.div
-                ref={(el) => {
-                  if (el) contentRefs.current.set(item.id.toString(), el);
-                }}
-                initial="collapsed"
+                initial={false}
                 animate={openItem === item.id.toString() ? "open" : "collapsed"}
                 variants={{
                   open: { opacity: 1, height: "auto" },
@@ -140,7 +100,7 @@ export default function ScrollFAQAccordion({
                 <div className="flex justify-end ml-7 mt-4 md:ml-16">
                   <div
                     className={cn(
-                      "relative max-w-md rounded-2xl px-5 py-3 text-white text-base text-left bg-gradient-to-r from-violet-500/80 via-fuchsia-500/80 to-rose-500/80 backdrop-blur-md border border-white/10 shadow-lg",
+                      "relative max-w-md rounded-2xl px-5 py-3 text-white text-base text-left bg-white/10 backdrop-blur-xl border border-white/15 shadow-lg",
                       answerClassName
                     )}
                   >

@@ -254,7 +254,7 @@ function App() {
         </section>
 
         {/* ═══════════════ FAQ ═══════════════ */}
-        <section id="faq" className="px-4 sm:px-6 lg:px-8">
+        <section id="faq" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <ScrollFAQAccordion data={faqData} />
         </section>
 

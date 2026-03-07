@@ -13,7 +13,7 @@ export default function EventCard({ event }) {
 
   return (
     <div
-      className={`flex flex-col md:flex-row bg-white/[0.05] backdrop-blur-xl rounded-2xl overflow-hidden border ${isUpcoming ? "border-[#FF9900]/50" : "border-white/10"} hover:border-[#FF9900] transition-colors duration-300 shadow-xl relative`}
+      className={`flex flex-col md:flex-row bg-black/[0.05] backdrop-blur-xl rounded-2xl overflow-hidden border ${isUpcoming ? "border-[#FF9900]/50" : "border-white/10"} hover:border-[#FF9900] transition-colors duration-300 shadow-xl relative`}
     >
       {isUpcoming && (
         <div className="absolute top-4 right-4 z-10 bg-[#FF9900] text-[#0f1b29] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
@@ -21,14 +21,13 @@ export default function EventCard({ event }) {
         </div>
       )}
 
-      <div className="md:w-1/3 min-h-[200px] md:min-h-full shrink-0 relative">
+      <div className="w-full md:w-1/3 min-h-[200px] md:min-h-full shrink-0 relative bg-[#0f1b29]">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-fill absolute inset-0"
+          className="w-full h-full object-contain absolute inset-0"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-80 md:opacity-100"></div>
       </div>
 
       <div className="p-6 md:p-8 flex flex-col justify-between flex-grow">

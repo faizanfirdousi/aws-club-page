@@ -1,33 +1,67 @@
+import faizanImg from "../assets/faizan.jpeg";
+import nikhilImg from "../assets/nikhil.jpeg";
+import nehaImg from "../assets/neha.jpeg";
+import shravanImg from "../assets/shravan.jpeg";
+import vedantImg from "../assets/vedant.jpeg";
+import saumyaImg from "../assets/saumya.jpeg";
+import jayantImg from "../assets/jayant.jpeg";
+
+import { Linkedin } from "lucide-react";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 const teamMembers = [
   {
-    name: "Aarav Sharma",
+    name: "Faizan Firdousi",
     role: "Club Lead",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+    image: faizanImg,
+    linkedin: "https://www.linkedin.com/in/faizanfirdousi/",
   },
   {
-    name: "Priya Deshmukh",
+    name: "Jayant Shrivastava",
+    role: "Vice President",
+    image: jayantImg,
+    linkedin: "https://www.linkedin.com/in/jayant-shrivastava-b347a2378/",
+    
+  },
+  {
+    name: "Vedant Jadhav",
+    role: "Operations Lead",
+    image: vedantImg,
+    linkedin: "https://www.linkedin.com/in/ferroflux/",
+   
+  },
+  {
+    name: "Nikhil Hire",
+    role: "Marketing & Outreach",
+    image: nikhilImg,
+    linkedin: "https://www.linkedin.com/in/nikhilhire/"
+  },
+  {
+    name: "Neha Niphade",
+    role: "Content & Communications",
+    image: nehaImg,
+    linkedin: "https://www.linkedin.com/in/neha-niphade-7974602b8/",
+   
+  },
+  {
+    name: "Shravan Lunawat",
     role: "Technical Lead",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face",
+    image: shravanImg,
+    linkedin: "https://www.linkedin.com/in/shravan-lunawat-12a195336/",
+
   },
   {
-    name: "Rohan Patil",
-    role: "Events Coordinator",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Sneha Kulkarni",
-    role: "Community Manager",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Vikram Joshi",
-    role: "Cloud Architect",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Ananya Iyer",
-    role: "Content & Outreach",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face",
+    name: "Saumya Jha",
+    role: "Development Lead",
+    image: saumyaImg,
+    linkedin: "https://www.linkedin.com/in/jhasaumya/",
   },
 ];
 
@@ -47,25 +81,49 @@ export default function MeetUsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="group bg-white/[0.05] backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-fuchsia-400/50 transition-all duration-300 text-center"
-            >
-              <div className="w-24 h-24 md:w-28 md:h-28 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-fuchsia-400/50 transition-colors duration-300">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="text-lg font-bold text-white mb-1">{member.name}</h3>
-              <p className="text-sm text-fuchsia-300/80">{member.role}</p>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          className="w-full max-w-5xl mx-auto px-10 sm:px-14"
+        >
+          <CarouselContent className="-ml-4">
+            {teamMembers.map((member, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-4 basis-full"
+              >
+                <div className="group bg-white/[0.05] backdrop-blur-xl rounded-2xl py-10 px-8 border border-white/10 hover:border-fuchsia-400/50 transition-all duration-300 h-full flex flex-col items-center text-center max-w-[260px] mx-auto">
+                  <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-fuchsia-400/50 transition-colors duration-300 mb-4">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white leading-tight">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-fuchsia-300/80 mt-1 mb-3">{member.role}</p>
+                    <div className="flex justify-center gap-2">
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-fuchsia-400 transition-colors"
+                      >
+                        <Linkedin size={20} />
+                      </a>
+                      
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-left-2 sm:-left-4 bg-white/20 border-white/20 text-white hover:bg-fuchsia-500/30 hover:border-fuchsia-400/50 hover:text-white w-9 h-9 sm:w-10 sm:h-10" />
+          <CarouselNext className="-right-2 sm:-right-4 bg-white/20 border-white/20 text-white hover:bg-fuchsia-500/30 hover:border-fuchsia-400/50 hover:text-white w-9 h-9 sm:w-10 sm:h-10" />
+        </Carousel>
       </div>
     </section>
   );

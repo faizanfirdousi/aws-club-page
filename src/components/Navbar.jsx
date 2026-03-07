@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const navLinks = [
-  { name: 'Home', href: '#hero' },
-  { name: 'About', href: '#about' },
-  { name: 'Events', href: '#events' },
-  { name: 'Gallery', href: '#gallery' },
-  { name: 'FAQ', href: '#faq' },
+  { name: "Home", href: "#hero" },
+  { name: "About", href: "#about" },
+  { name: "Events", href: "#events" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "FAQ", href: "#faq" },
 ];
 
 export default function Navbar() {
@@ -15,18 +15,22 @@ export default function Navbar() {
     e.preventDefault();
     const el = document.querySelector(href);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     setIsOpen(false);
   };
 
   return (
     <nav className="bg-black/30 backdrop-blur-xl border-b border-white/10 sticky top-0 z-40 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16">
           <div className="flex items-center">
-            <a href="#hero" onClick={(e) => scrollTo(e, '#hero')} className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold tracking-wider flex items-center gap-2">
+            <a
+              href="#hero"
+              onClick={(e) => scrollTo(e, "#hero")}
+              className="flex-shrink-0 flex items-center"
+            >
+              <span className="text-base sm:text-xl font-bold tracking-wider flex items-center gap-2">
                 <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-rose-400 bg-clip-text text-transparent">
                   AWS Cloud Club
                 </span>
@@ -36,8 +40,8 @@ export default function Navbar() {
               </span>
             </a>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-6">
+          <div className="hidden md:flex justify-center">
+            <div className="flex items-baseline space-x-6">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -50,7 +54,7 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="flex md:hidden ml-auto">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -60,12 +64,36 @@ export default function Navbar() {
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               )}
             </button>
@@ -74,8 +102,8 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden" id="mobile-menu">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="md:hidden bg-black/40 backdrop-blur-xl border-t border-white/10" id="mobile-menu">
+          <div className="px-4 pt-3 pb-4 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}

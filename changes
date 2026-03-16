@@ -1,0 +1,64 @@
+const navLinks = [
+  { name: "Home", href: "#hero" },
+  { name: "Team", href: "#team" },
+  { name: "Events", href: "#events" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "FAQ", href: "#faq" },
+];
+
+export default function Navbar() {
+  const scrollTo = (e, href) => {
+    e.preventDefault();
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  return (
+    <nav aria-label="Primary navigation">
+      {navLinks.map((link) => (
+        <a
+          key={link.name}
+          href={link.href}
+          onClick={(e) => scrollTo(e, link.href)}
+          className="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200 flex-shrink-0"
+        >
+          {link.name}
+        </a>
+      ))}
+
+      <a
+        href="https://www.meetup.com/aws-i2it/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Join Us
+      </a>
+    </nav>
+  );
+}
+
+
+
+
+
+<section id="hero">
+  {/* hero content */}
+</section>
+
+<section id="events" className="scroll-mt-24">
+  {/* events content */}
+</section>
+
+<section id="team" className="scroll-mt-24">
+  <MeetUsSection />
+</section>
+
+<section id="gallery" className="scroll-mt-24">
+  {/* gallery content */}
+</section>
+
+<section id="faq" className="scroll-mt-24">
+  <ScrollFAQAccordion items={faqData} />
+</section>

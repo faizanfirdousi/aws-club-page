@@ -5,17 +5,17 @@ import MeetUsSection from "./components/MeetUsSection";
 import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
 
-const latestEvent = {
+const upcomingEvent = {
   id: 1,
-  title: "Launch of AWS Cloud Club",
-  date: "March 9, 2026",
+  title:
+    "Your Website, Live on the Internet : Hands-On Website Deployment with AWS",
+  date: "April 8, 2026",
   time: "3:45 PM - 4:45 PM",
-  location: "Convention Center, Academic Block",
-  description:
-    "Join us as we break down the complexities of cloud technology, highlight the opportunities available through our club, and outline our vision for an exciting journey ahead.",
+  location: "PPCRC",
+  description: "Join us as we teach how to deploy your website on the cloud.",
   image:
     "https://secure.meetupstatic.com/photos/event/1/5/5/8/highres_533045464.webp?w=750",
-  tags: ["Launch Event"],
+  tags: ["Deploy"],
   isUpcoming: true,
   registrationLink:
     "https://www.meetup.com/aws-i2it/events/313649260/?eventOrigin=group_events_list&utm_version=v2&member_id=451867731",
@@ -111,14 +111,13 @@ function App() {
                 </h2>
               </div>
               <p className="text-gray-400 max-w-sm text-base md:text-lg md:text-right">
-                We&rsquo;re building the kind of community we wished existed when
-                we started.
+                We&rsquo;re building the kind of community we wished existed
+                when we started.
               </p>
             </div>
 
             {/* Bento grid — asymmetric layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-
               {/* Card 1 — spans full width on top */}
               <div className="md:col-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/[0.04] border border-white/10 hover:border-fuchsia-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10">
                 {/* Decorative glow */}
@@ -133,8 +132,8 @@ function App() {
                     </h3>
                     <p className="text-gray-400 text-base md:text-lg max-w-2xl leading-relaxed">
                       Spin up real AWS infrastructure, deploy actual apps, and
-                      figure out cloud by doing, not by watching slides.
-                      Every session is a hands-on lab, not a lecture.
+                      figure out cloud by doing, not by watching slides. Every
+                      session is a hands-on lab, not a lecture.
                     </p>
                   </div>
                 </div>
@@ -175,7 +174,6 @@ function App() {
                   </p>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -185,7 +183,7 @@ function App() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Upcoming Events
+                Upcoming Events
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto text-lg">
                 Join us at our next event. Learn, build, and grow your cloud
@@ -193,17 +191,29 @@ function App() {
               </p>
             </div>
 
-            <EventCard event={latestEvent} />
+            <EventCard event={upcomingEvent} />
 
-            <div className="text-center mt-10">
-              <a
-                href="https://www.meetup.com/aws-i2it/events/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
-              >
-                See All Events →
-              </a>
+            <div className="flex justify-center items-center gap-15">
+              <div className="text-center mt-10">
+                <a
+                  href="https://www.meetup.com/aws-i2it/events/past/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
+                >
+                  See Past Events →
+                </a>
+              </div>
+              <div className="text-center mt-10">
+                <a
+                  href="https://www.meetup.com/aws-i2it/events/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
+                >
+                  See All Events →
+                </a>
+              </div>
             </div>
           </div>
         </section>

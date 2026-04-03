@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const images = [
   "/aws1.jpeg",
@@ -16,18 +16,21 @@ const CircularCarousel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) { // mobile
+      if (window.innerWidth < 640) {
+        // mobile
         setSize({ width: 200, height: 140, radius: 820 });
-      } else if (window.innerWidth < 1024) { // tablet
+      } else if (window.innerWidth < 1024) {
+        // tablet
         setSize({ width: 280, height: 200, radius: 1150 });
-      } else { // desktop
+      } else {
+        // desktop
         setSize({ width: 360, height: 260, radius: 1500 });
       }
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const N = carouselItems.length;
@@ -46,13 +49,13 @@ const CircularCarousel = () => {
         `}
       </style>
       <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden orbit-system rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl">
-        <div 
+        <div
           className="absolute left-1/2 orbit-wrapper"
           style={{
-            top: `${size.radius + (size.height / 2) + 60}px`,
-            transform: 'translateX(-50%)',
-            transformOrigin: 'center center',
-            animation: 'spin-orbit-reverse 110s linear infinite'
+            top: `${size.radius + size.height / 2 + 60}px`,
+            transform: "translateX(-50%)",
+            transformOrigin: "center center",
+            animation: "spin-orbit-reverse 110s linear infinite",
           }}
         >
           {carouselItems.map((src, i) => {
@@ -72,15 +75,11 @@ const CircularCarousel = () => {
                 <div className="w-full h-full relative group shadow-[0_15px_50px_rgba(0,0,0,0.6)] hover:-translate-y-4 transition-all duration-300 cursor-pointer">
                   <div className="w-full h-full bg-white p-3 pb-12 sm:p-4 sm:pb-16 flex flex-col justify-start">
                     <div className="w-full h-full relative overflow-hidden bg-gray-100">
-                      <img 
-                        src={src} 
-                        alt={`Community moment ${i}`} 
+                      <img
+                        src={src}
+                        alt={`Community moment ${i}`}
                         className="w-full h-full object-cover transition-all duration-700 hover:scale-[1.05]"
                       />
-                    </div>
-                    {/* Dummy text layout matching reference frame */}
-                    <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-1">
-                       <span className="text-black font-bold text-xs sm:text-sm tracking-tight truncate">Community Moment #{i+1}</span>
                     </div>
                   </div>
                 </div>

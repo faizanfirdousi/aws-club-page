@@ -245,30 +245,117 @@ function App() {
           <ScrollFAQAccordion data={faqData} />
         </section>
 
-        {/* ═══════════════ CTA ═══════════════ */}
+        {/* ═══════════════ SOCIALS & CTA ═══════════════ */}
         <section className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white/[0.04] backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 text-center border border-white/10 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-fuchsia-500 opacity-15 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-purple-500 opacity-15 rounded-full blur-3xl"></div>
+            <div className="bg-white/[0.03] backdrop-blur-2xl rounded-3xl p-6 sm:p-10 md:p-12 border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.4)] relative group transform-gpu transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+              
+              {/* Simplified Background Decorative Glows */}
+              <div className="absolute top-0 right-0 -mt-20 -mr-20 w-[400px] h-[400px] bg-fuchsia-500/10 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700 group-hover:opacity-40"></div>
+              <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700 group-hover:opacity-40"></div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 relative z-10">
-                Ready to start your cloud journey?
-              </h2>
-              <p className="text-base sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto relative z-10">
-                Learn AWS step by step with peers, apply concepts in small
-                projects, and grow into cloud, DevOps, and modern
-                infrastructure.
-              </p>
-              <div className="relative z-10">
-                <a
-                  href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-white text-black font-semibold py-4 px-10 rounded-full hover:bg-gray-200 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
-                >
-                  Join the Community
-                </a>
+              <div className="relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+                {/* Left side content (Text and Socials) */}
+                <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
+                  <p className="text-fuchsia-400 text-sm font-bold uppercase tracking-[0.2em] mb-3">
+                    Connect & Join
+                  </p>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white text-balance">
+                    Ready to start your cloud journey?
+                  </h2>
+                  <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-xl text-balance">
+                    Learn AWS step by step with peers, apply concepts in small
+                    projects, and grow into cloud, DevOps, and modern
+                    infrastructure.
+                  </p>
+                  
+                  {/* Meetup Priority Join Button */}
+                  <div className="relative z-10 w-full flex justify-center lg:justify-start mb-8">
+                    <a
+                      href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 bg-[#F64060] text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(246,64,96,0.2)] hover:shadow-[0_15px_35px_rgba(246,64,96,0.4)] transition-all duration-300"
+                    >
+                      <svg
+                        className="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M99 414.3c1.1 5.7-2.3 11.1-8 12.3-5.4 1.1-10.9-2.3-12-8-1.1-5.4 2.3-11.1 7.7-12.3 5.4-1.2 11.1 2.3 12.3 8zm143.1 71.4c-6.3 4.6-8 13.4-3.7 20 4.6 6.6 13.4 8.3 20 3.7 6.3-4.6 8-13.4 3.4-20-4.2-6.5-13.1-8.3-19.7-3.7zm-86-462.3c6.3-1.4 10.3-7.7 8.9-14-1.1-6.6-7.4-10.6-13.7-9.1-6.3 1.4-10.3 7.7-9.1 14 1.4 6.6 7.6 10.6 13.9 9.1zM34.4 226.3c-10-6.9-23.7-4.3-30.6 6-6.9 10-4.3 24 5.7 30.9 10 7.1 23.7 4.6 30.6-5.7 6.9-10.4 4.3-24.1-5.7-31.2zm272-170.9c10.6-6.3 13.7-20 7.7-30.3-6.3-10.6-19.7-14-30-7.7s-13.7 20-7.4 30.6c6 10.3 19.4 13.7 29.7 7.4zm-191.1 58c7.7-5.4 9.4-16 4.3-23.7s-15.7-9.4-23.1-4.3c-7.7 5.4-9.4 16-4.3 23.7 5.1 7.8 15.6 9.5 23.1 4.3zm372.3 156c-7.4 1.7-12.3 9.1-10.6 16.9 1.4 7.4 8.9 12.3 16.3 10.6 7.4-1.4 12.3-8.9 10.6-16.6-1.5-7.4-8.9-12.3-16.3-10.9zm39.7-56.8c-1.1-5.7-6.6-9.1-12-8-5.7 1.1-9.1 6.9-8 12.6 1.1 5.4 6.6 9.1 12.3 8 5.4-1.5 9.1-6.9 7.7-12.6zM447 138.9c-8.6 6-10.6 17.7-4.9 26.3 5.7 8.6 17.4 10.6 26 4.9 8.3-6 10.3-17.7 4.6-26.3-5.7-8.7-17.4-10.9-25.7-4.9zm-6.3 139.4c26.3 43.1 15.1 100-26.3 129.1-17.4 12.3-37.1 17.7-56.9 17.1-12 47.1-69.4 64.6-105.1 32.6-1.1.9-2.6 1.7-3.7 2.9-39.1 27.1-92.3 17.4-119.4-22.3-9.7-14.3-14.6-30.6-15.1-46.9-65.4-10.9-90-94-41.1-139.7-28.3-46.9.6-107.4 53.4-114.9C151.6 70 234.1 38.6 290.1 82c67.4-22.3 136.3 29.4 130.9 101.1 41.1 12.6 52.8 66.9 19.7 95.2zm-70 74.3c-3.1-20.6-40.9-4.6-43.1-27.1-3.1-32 43.7-101.1 40-128-3.4-24-19.4-29.1-33.4-29.4-13.4-.3-16.9 2-21.4 4.6-2.9 1.7-6.6 4.9-11.7-.3-6.3-6-11.1-11.7-19.4-12.9-12.3-2-17.7 2-26.6 9.7-3.4 2.9-12 12.9-20 9.1-3.4-1.7-15.4-7.7-24-11.4-16.3-7.1-40 4.6-48.6 20-12.9 22.9-38 113.1-41.7 125.1-8.6 26.6 10.9 48.6 36.9 47.1 11.1-.6 18.3-4.6 25.4-17.4 4-7.4 41.7-107.7 44.6-112.6 2-3.4 8.9-8 14.6-5.1 5.7 3.1 6.9 9.4 6 15.1-1.1 9.7-28 70.9-28.9 77.7-3.4 22.9 26.9 26.6 38.6 4 3.7-7.1 45.7-92.6 49.4-98.3 4.3-6.3 7.4-8.3 11.7-8 3.1 0 8.3.9 7.1 10.9-1.4 9.4-35.1 72.3-38.9 87.7-4.6 20.6 6.6 41.4 24.9 50.6 11.4 5.7 62.5 15.7 58.5-11.1zm5.7 92.3c-10.3 7.4-12.9 22-5.7 32.6 7.1 10.6 21.4 13.1 32 6 10.6-7.4 13.1-22 6-32.6-7.4-10.6-21.7-13.5-32.3-6z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="tracking-wide text-lg">Join us on Meetup</span>
+                    </a>
+                  </div>
+
+                  {/* Secondary Socials */}
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <p className="text-gray-400 font-semibold tracking-widest uppercase text-xs sm:mr-2">
+                      Also Connect On
+                    </p>
+                    <div className="flex items-center gap-4">
+                      {/* LinkedIn */}
+                      <a
+                        href="https://www.linkedin.com/company/awsi2it/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex justify-center items-center h-12 w-12 bg-white/[0.05] border border-white/10 rounded-full hover:bg-[#0A66C2] hover:text-white transform hover:-translate-y-1 transition-all duration-300"
+                        title="LinkedIn"
+                      >
+                        <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                      </a>
+                      
+                      {/* Instagram */}
+                      <a
+                        href="https://www.instagram.com/awsclub.i2it/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex justify-center items-center h-12 w-12 bg-white/[0.05] border border-white/10 rounded-full hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white transform hover:-translate-y-1 transition-all duration-300"
+                        title="Instagram"
+                      >
+                        <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right side: Meetup Banner Display */}
+                <div className="flex-1 w-full max-w-lg lg:max-w-none mx-auto flex justify-center lg:justify-end relative group/banner cursor-pointer" onClick={() => window.open("https://www.meetup.com/aws-cloud-club-at-i2it-pune/", "_blank")}>
+                  {/* Subtle glow behind image */}
+                  <div className="absolute inset-0 bg-[#F64060]/10 blur-3xl rounded-2xl transition-opacity duration-700 group-hover/banner:opacity-40"></div>
+                  
+                  {/* Banner Image Container */}
+                  <div className="relative z-10 w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-500 ease-out group-hover/banner:scale-[1.02]">
+                    <img
+                      src="/meetup_banner.jpg"
+                      alt="AWS Cloud Clubs Banner"
+                      className="w-full h-auto max-h-[320px] object-cover"
+                      onError={(e) => {
+                        e.target.src = 'https://secure.meetupstatic.com/photos/event/1/5/5/8/highres_533045464.webp?w=750';
+                      }}
+                    />
+                    
+                    {/* Simplified Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    
+                    {/* Banner Overlay Info */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/10 opacity-0 transform translate-y-2 transition-all duration-300 group-hover/banner:opacity-100 group-hover/banner:translate-y-0 text-white">
+                       <div className="relative flex h-3 w-3">
+                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                       </div>
+                       <span className="text-sm font-semibold">Join 500+ Cloud Enthusiasts</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

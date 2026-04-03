@@ -174,14 +174,33 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Mobile/Tablet Fallback Links + Search Icon */}
-            <div className="flex lg:hidden flex-1 justify-end items-center gap-2 px-2 mx-1">
-              <button 
-                onClick={() => setIsSearchOpen(true)}
-                className="p-2 text-white/60 hover:text-white transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              </button>
+            {/* Center: Dynamic Island (Mobile/Tablet Compressed View) */}
+            <div className="flex lg:hidden flex-1 justify-center relative px-2">
+              <div className="flex items-center p-1 rounded-full bg-black/40 backdrop-blur-md border border-white/[0.05] shadow-[inset_0_2px_15px_rgba(0,0,0,0.8)] z-10 overflow-hidden w-full max-w-[220px] sm:max-w-[320px]">
+                
+                <div className="flex items-center overflow-x-auto no-scrollbar scroll-smooth flex-1 pl-1">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => scrollTo(e, link.href)}
+                      className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white/50 hover:text-white hover:bg-white/[0.08] active:scale-95 transition-all duration-300 flex-shrink-0"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="w-px h-4 bg-white/10 mx-1 flex-shrink-0"></div>
+
+                <button 
+                  onClick={() => setIsSearchOpen(true)}
+                  className="p-1.5 text-white/50 hover:text-white flex-shrink-0 focus:outline-none hover:bg-white/[0.08] rounded-full transition-all mr-0.5"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                
+              </div>
             </div>
 
             {/* Right: Physical 3D Join Us Button */}

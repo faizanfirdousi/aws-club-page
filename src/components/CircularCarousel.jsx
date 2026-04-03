@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 const images = [
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1531496730074-83b638c0a7ac?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop",
+  "/aws1.jpeg",
+  "/aws2.jpeg",
+  "/aws3.jpeg",
+  "/aws4.jpeg",
+  "/aws5.jpeg",
+  "/aws6.jpeg",
 ];
 
-const doubleImages = [...images, ...images];
+const carouselItems = [...images, ...images, ...images, ...images];
 
 const CircularCarousel = () => {
   const [size, setSize] = useState({ width: 360, height: 260, radius: 1500 });
@@ -36,7 +30,7 @@ const CircularCarousel = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const N = doubleImages.length;
+  const N = carouselItems.length;
 
   return (
     <>
@@ -58,10 +52,10 @@ const CircularCarousel = () => {
             top: `${size.radius + (size.height / 2) + 60}px`,
             transform: 'translateX(-50%)',
             transformOrigin: 'center center',
-            animation: 'spin-orbit-reverse 150s linear infinite'
+            animation: 'spin-orbit-reverse 110s linear infinite'
           }}
         >
-          {doubleImages.map((src, i) => {
+          {carouselItems.map((src, i) => {
             const angleDeg = (i / N) * 360;
             return (
               <div

@@ -4,6 +4,7 @@ import EventCard from "./components/EventCard";
 import MeetUsSection from "./components/MeetUsSection";
 import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
+import CircularCarousel from "./components/CircularCarousel";
 
 const upcomingEvent = {
   id: 1,
@@ -234,30 +235,8 @@ function App() {
               </p>
             </div>
 
-            {/* Coming Soon Banner */}
-            <div className="relative flex items-center justify-center w-full h-[280px] sm:h-[400px] md:h-[500px] rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl overflow-hidden group hover:border-white/20 transition-all duration-500">
-              <div className="absolute top-0 left-1/4 w-72 h-72 bg-fuchsia-500 rounded-full mix-blend-screen filter blur-[120px] opacity-10 animate-pulse"></div>
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-fuchsia-400/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-400/40 to-transparent"></div>
-
-              <div className="relative text-center p-8 z-10">
-                <div className="flex items-center justify-center gap-2 mb-6">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-500 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-fuchsia-400"></span>
-                  </span>
-                  <span className="text-fuchsia-300/90 text-sm font-semibold uppercase tracking-[0.2em]">
-                    Under Construction
-                  </span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-widest uppercase mb-4 text-white">
-                  Coming Soon
-                </h3>
-                <p className="text-gray-400/80 text-lg max-w-md mx-auto">
-                  We are curating our best moments. Stay tuned!
-                </p>
-              </div>
-            </div>
+            {/* Dynamic Community Circular Carousel */}
+            <CircularCarousel />
           </div>
         </section>
 

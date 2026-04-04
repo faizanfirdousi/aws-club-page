@@ -220,7 +220,7 @@ function App() {
         </section>
 
         {/* ═══════════════ MEET US ═══════════════ */}
-        <MeetUsSection />
+        {<MeetUsSection />}
 
         {/* ═══════════════ GALLERY ═══════════════ */}
         <section id="gallery" className="py-16 md:py-24">

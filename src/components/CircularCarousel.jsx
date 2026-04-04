@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const images = [
   "/aws1.jpeg",
@@ -16,18 +16,21 @@ const CircularCarousel = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) { // mobile
+      if (window.innerWidth < 640) {
+        // mobile
         setSize({ width: 200, height: 140, radius: 820 });
-      } else if (window.innerWidth < 1024) { // tablet
+      } else if (window.innerWidth < 1024) {
+        // tablet
         setSize({ width: 280, height: 200, radius: 1150 });
-      } else { // desktop
+      } else {
+        // desktop
         setSize({ width: 360, height: 260, radius: 1500 });
       }
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const N = carouselItems.length;
@@ -82,13 +85,13 @@ const CircularCarousel = () => {
         `}
       </style>
       <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden orbit-system rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl">
-        <div 
+        <div
           className="absolute left-1/2 orbit-wrapper"
           style={{
-            top: `${size.radius + (size.height / 2) + 60}px`,
-            transform: 'translateX(-50%)',
-            transformOrigin: 'center center',
-            animation: 'spin-orbit-reverse 110s linear infinite'
+            top: `${size.radius + size.height / 2 + 60}px`,
+            transform: "translateX(-50%)",
+            transformOrigin: "center center",
+            animation: "spin-orbit-reverse 110s linear infinite",
           }}
         >
           {carouselItems.map((src, i) => {
@@ -105,37 +108,14 @@ const CircularCarousel = () => {
                   transform: `rotate(${angleDeg}deg) translateY(-${size.radius}px)`,
                 }}
               >
-                <div 
-                  className="w-full h-full"
-                  style={{ animation: `float ${3 + i % 3}s ease-in-out infinite`, animationDelay: `${i * 0.15}s` }}
-                >
-                  <div className="polaroid-card w-full h-full relative shadow-[0_15px_50px_rgba(0,0,0,0.6)] cursor-pointer group bg-white rounded-md">
-                    <div className="w-full h-full p-3 pb-12 sm:p-4 sm:pb-16 flex flex-col justify-start relative overflow-hidden rounded-md z-10 transition-colors duration-500 group-hover:bg-fuchsia-50/20">
-                      <div className="w-full h-full relative overflow-hidden bg-zinc-900 shadow-inner z-10 rounded-sm">
-                        <img 
-                          src={src} 
-                          alt={`Community moment ${i}`} 
-                          className="polaroid-img w-full h-full object-cover transition-transform duration-700 ease-out"
-                        />
-                        <div className="shimmer-effect"></div>
-                        {/* Dark gradient overlay at bottom of image to make it look deeper */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-                      </div>
-                      
-                      <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-2 z-20">
-                         <span className="text-zinc-800 font-bold text-xs sm:text-sm tracking-tight truncate group-hover:text-fuchsia-700 transition-colors duration-300">
-                           Community Moment #{i+1}
-                         </span>
-                         
-                         <div className="opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-out text-fuchsia-500">
-                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 drop-shadow-md" viewBox="0 0 20 20" fill="currentColor">
-                             <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                           </svg>
-                         </div>
-                      </div>
-                      
-                      {/* Decorative gradient overlay that becomes visible on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-fuchsia-500/0 via-transparent to-violet-500/0 group-hover:from-fuchsia-500/10 group-hover:to-violet-500/10 transition-colors duration-500 z-0"></div>
+                <div className="w-full h-full relative group shadow-[0_15px_50px_rgba(0,0,0,0.6)] hover:-translate-y-4 transition-all duration-300 cursor-pointer">
+                  <div className="w-full h-full bg-white p-3 pb-12 sm:p-4 sm:pb-16 flex flex-col justify-start">
+                    <div className="w-full h-full relative overflow-hidden bg-gray-100">
+                      <img
+                        src={src}
+                        alt={`Community moment ${i}`}
+                        className="w-full h-full object-cover transition-all duration-700 hover:scale-[1.05]"
+                      />
                     </div>
                   </div>
                 </div>

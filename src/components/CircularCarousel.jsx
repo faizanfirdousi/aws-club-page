@@ -43,44 +43,8 @@ const CircularCarousel = () => {
             0% { transform: translateX(-50%) rotate(0deg); }
             100% { transform: translateX(-50%) rotate(-360deg); }
           }
-          .orbit-system:hover .orbit-wrapper, 
-          .orbit-system:focus-within .orbit-wrapper {
+          .orbit-system:hover .orbit-wrapper {
             animation-play-state: paused;
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
-          }
-          @keyframes shimmer-slide {
-             0% { left: -150%; }
-             100% { left: 150%; }
-          }
-          .polaroid-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-          }
-          .polaroid-card:hover {
-            transform: translateY(-30px) scale(1.08) rotate(-3deg);
-            z-index: 50;
-            box-shadow: 
-              0 30px 60px rgba(0,0,0,0.6), 
-              0 0 40px rgba(217,70,239,0.4), 
-              0 0 80px rgba(139,92,246,0.3);
-          }
-          .polaroid-card:hover .polaroid-img {
-            transform: scale(1.12);
-          }
-          .shimmer-effect {
-            position: absolute;
-            top: 0; bottom: 0; width: 60%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
-            transform: skewX(-20deg);
-            left: -150%;
-            pointer-events: none;
-            z-index: 30;
-          }
-          .polaroid-card:hover .shimmer-effect {
-            animation: shimmer-slide 0.8s ease-out forwards;
           }
         `}
       </style>
@@ -99,7 +63,7 @@ const CircularCarousel = () => {
             return (
               <div
                 key={i}
-                className="absolute top-1/2 left-1/2 will-change-transform"
+                className="absolute top-1/2 left-1/2"
                 style={{
                   width: size.width,
                   height: size.height,

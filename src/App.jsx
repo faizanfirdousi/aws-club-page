@@ -4,7 +4,7 @@ import EventCard from "./components/EventCard";
 import MeetUsSection from "./components/MeetUsSection";
 import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
-import CircularCarousel from "./components/CircularCarousel";
+import SwiperGallery from "./components/SwiperGallery";
 
 const upcomingEvent = {
   id: 1,
@@ -235,8 +235,8 @@ function App() {
               </p>
             </div>
 
-            {/* Dynamic Community Circular Carousel */}
-            <CircularCarousel />
+            {/* Dynamic Community Swiper Gallery */}
+            <SwiperGallery />
           </div>
         </section>
 

@@ -10,7 +10,7 @@ const upcomingEvent = {
   id: 1,
   title:
     "Your Website, Live on the Internet : Hands-On Website Deployment with AWS",
-  date: "April 8, 2026",
+  date: "April 7, 2026",
   time: "3:45 PM - 4:45 PM",
   location: "Room 302 PPCRC",
   description:
@@ -20,7 +20,7 @@ const upcomingEvent = {
   tags: ["Deploy"],
   isUpcoming: true,
   registrationLink:
-    "https://www.meetup.com/aws-i2it/events/313649260/?eventOrigin=group_events_list&utm_version=v2&member_id=451867731",
+    "https://www.meetup.com/aws-i2it/events/314130521/?eventOrigin=group_upcoming_events",
 };
 
 const faqData = [
@@ -370,7 +370,7 @@ function App() {
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                       </div>
                       <span className="text-sm font-semibold">
-                        Join 500+ Cloud Enthusiasts
+                        Join 150+ Cloud Enthusiasts
                       </span>
                     </div>
                   </div>

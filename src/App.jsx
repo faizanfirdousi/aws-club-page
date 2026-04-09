@@ -1,27 +1,45 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import EventCard from "./components/EventCard";
+import EventsSection from "./components/EventCard";
 import MeetUsSection from "./components/MeetUsSection";
 import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
 import CircularCarousel from "./components/CircularCarousel";
 
-const upcomingEvent = {
-  id: 1,
-  title:
-    "Your Website, Live on the Internet : Hands-On Website Deployment with AWS",
-  date: "April 7, 2026",
-  time: "3:45 PM - 4:45 PM",
-  location: "Room 302 PPCRC",
-  description:
-    "Learn how to deploy your project, make it accessible from anywhere, and give it a real presence on the internet.",
-  image:
-    "https://secure.meetupstatic.com/photos/event/7/b/4/b/highres_533551563.webp?w=750",
-  tags: ["Deploy"],
-  isUpcoming: true,
-  registrationLink:
-    "https://www.meetup.com/aws-i2it/events/314130521/?eventOrigin=group_upcoming_events",
-};
+const upcomingEvents = [
+  
+];
+
+const pastEvents = [
+  {
+    id: 1,
+    title:
+      "Your Website, Live on the Internet : Hands-On Website Deployment with AWS",
+    date: "April 7, 2026",
+    time: "3:45 PM - 4:45 PM",
+    location: "Room 302 PPCRC",
+    description:
+      "Learn how to deploy your project, make it accessible from anywhere, and give it a real presence on the internet.",
+    image:
+      "https://secure.meetupstatic.com/photos/event/7/b/4/b/highres_533551563.webp?w=750",
+    tags: ["Deploy"],
+    registrationLink:
+      "https://www.meetup.com/aws-i2it/events/314130521/?eventOrigin=group_upcoming_events",
+  },
+  {
+    id: 2,
+    title: "Launch of AWS Cloud Club I²IT: Introduction to Cloud Computing & AWS",
+    date: "March 9, 2026",
+    time: "3:45 PM - 4:45 PM",
+    location: "CC",
+    description:
+      "Join us as we break down the complexities of cloud technology, highlight the opportunities available through our club, and outline our vision for exciting journey ahead.",
+    image: "https://secure.meetupstatic.com/photos/event/1/5/5/8/highres_533045464.webp?w=750",
+    tags: ["Launch"],
+    isUpcoming: false,
+    registrationLink:"https://www.meetup.com/aws-i2it/events/313649260/"
+  }
+];
 
 const faqData = [
   {
@@ -181,44 +199,7 @@ function App() {
         </section>
 
         {/* ═══════════════ EVENTS ═══════════════ */}
-        <section id="events" className="py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Upcoming Events
-              </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Join us at our next event. Learn, build, and grow your cloud
-                skillset alongside peers.
-              </p>
-            </div>
-
-            <EventCard event={upcomingEvent} />
-
-            <div className="flex justify-center items-center gap-15">
-              <div className="text-center mt-10">
-                <a
-                  href="https://www.meetup.com/aws-i2it/events/past/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
-                >
-                  See Past Events →
-                </a>
-              </div>
-              <div className="text-center mt-10">
-                <a
-                  href="https://www.meetup.com/aws-i2it/events/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
-                >
-                  See All Events →
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        <EventsSection upcomingEvents={upcomingEvents} pastEvents={pastEvents} />
 
         {/* ═══════════════ MEET US ═══════════════ */}
         {<MeetUsSection />}

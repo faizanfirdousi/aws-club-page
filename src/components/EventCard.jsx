@@ -32,18 +32,18 @@ export function EventGridCard({ event }) {
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-grow gap-3">
+      <div className="p-4 sm:p-5 flex flex-col flex-grow gap-2 sm:gap-3">
         {/* Date & time */}
-        <div className="flex items-center gap-4 text-xs text-gray-400">
+        <div className="flex items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-gray-400">
           <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             {date}
           </span>
           {time && (
             <span className="flex items-center gap-1.5">
-              <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {time}
@@ -52,18 +52,18 @@ export function EventGridCard({ event }) {
         </div>
 
         {/* Title */}
-        <h3 className="text-base font-bold text-white leading-snug line-clamp-2">
+        <h3 className="text-lg sm:text-base font-bold text-white leading-tight sm:leading-snug line-clamp-2">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+        <p className="text-gray-400 sm:text-gray-500 text-xs sm:text-sm leading-relaxed line-clamp-2">
           {description}
         </p>
 
         {/* Location */}
-        <div className="flex items-center text-xs text-gray-400 gap-1.5">
-          <svg className="w-3.5 h-3.5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center text-[10px] sm:text-xs text-gray-400 gap-1.5">
+          <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
@@ -71,15 +71,15 @@ export function EventGridCard({ event }) {
         </div>
 
         {/* Spacer to push footer down */}
-        <div className="flex-grow" />
+        <div className="flex-grow min-h-[0.5rem] sm:min-h-0" />
 
         {/* Tags + Button */}
-        <div className="flex items-center justify-between mt-2 pt-3 border-t border-white/5">
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag, idx) => (
+        <div className="flex items-center justify-between mt-1 sm:mt-2 pt-3 border-t border-white/5">
+          <div className="flex flex-wrap gap-1.5 max-w-[60%]">
+            {tags.slice(0, 2).map((tag, idx) => (
               <span
                 key={idx}
-                className="bg-fuchsia-500/10 text-fuchsia-300 text-[10px] font-semibold px-2.5 py-1 rounded-full border border-fuchsia-500/20"
+                className="bg-fuchsia-500/10 text-fuchsia-300 text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-fuchsia-500/20"
               >
                 {tag}
               </span>
@@ -88,13 +88,12 @@ export function EventGridCard({ event }) {
 
           <button
             onClick={() => window.open(registrationLink || "https://www.meetup.com/aws-cloud-club-at-i2it-pune/", "_blank")}
-            className={`text-xs font-bold px-4 py-1.5 rounded-full transition-colors duration-200 ${
-              isUpcoming 
-                ? "bg-[#FF9900] hover:bg-[#e68a00] text-[#0f1b29]" 
-                : "bg-white/10 hover:bg-white/20 text-white border border-white/20"
-            }`}
+            className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${isUpcoming
+                ? "bg-[#FF9900] hover:bg-[#ffb03a] text-[#0f1b29] shadow-[0_4px_12px_rgba(255,153,0,0.2)]"
+                : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
+              }`}
           >
-            {isUpcoming ? "Join Now" : "View Details"}
+            {isUpcoming ? "Join Now" : "Details"}
           </button>
         </div>
       </div>
@@ -108,17 +107,43 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
   const [scrollIndex, setScrollIndex] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(3);
   const carouselRef = useRef(null);
 
   const GAP = 24; // gap-6 = 1.5rem = 24px
+  const filters = ["All", "Upcoming", "Past"];
+
+  // Memoize filtered events to keep it stable
+  const filteredEvents = activeFilter === "All" 
+    ? [...upcomingEvents, ...pastEvents] 
+    : (activeFilter === "Upcoming" ? upcomingEvents : pastEvents);
 
   const updateTranslate = useCallback(() => {
     if (!carouselRef.current) return;
     const containerWidth = carouselRef.current.offsetWidth;
-    const cw = (containerWidth - GAP * 2) / 3;
+    
+    // Determine cards per view based on container/window width
+    let cpv = 3;
+    if (window.innerWidth < 640) cpv = 1;
+    else if (window.innerWidth < 1024) cpv = 2;
+    
+    setCardsPerView(cpv);
+
+    // Calculate card width based on cpv
+    const cw = cpv === 1 ? containerWidth : (containerWidth - GAP * (cpv - 1)) / cpv;
     setCardWidth(cw);
-    setTranslateX(scrollIndex * (cw + GAP));
-  }, [scrollIndex]);
+
+    // Ensure scrollIndex is within bounds if cpv changes
+    const totalEvents = filteredEvents.length;
+    const maxIdx = Math.max(0, totalEvents - cpv);
+    const safeIndex = Math.min(scrollIndex, maxIdx);
+    
+    if (safeIndex !== scrollIndex) {
+      setScrollIndex(safeIndex);
+    }
+    
+    setTranslateX(safeIndex * (cw + GAP));
+  }, [scrollIndex, filteredEvents.length]);
 
   useEffect(() => {
     updateTranslate();
@@ -126,19 +151,7 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
     return () => window.removeEventListener("resize", updateTranslate);
   }, [updateTranslate]);
 
-  const filters = ["All", "Upcoming", "Past"];
-
-  let filteredEvents = [];
-  if (activeFilter === "All") {
-    filteredEvents = [...upcomingEvents, ...pastEvents];
-  } else if (activeFilter === "Upcoming") {
-    filteredEvents = upcomingEvents;
-  } else if (activeFilter === "Past") {
-    filteredEvents = pastEvents;
-  }
-
-  const CARDS_PER_VIEW = 3;
-  const maxIndex = Math.max(0, filteredEvents.length - CARDS_PER_VIEW);
+  const maxIndex = Math.max(0, filteredEvents.length - cardsPerView);
 
   const scrollLeft = () => setScrollIndex((prev) => Math.max(0, prev - 1));
   const scrollRight = () =>
@@ -167,11 +180,10 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                 setActiveFilter(f);
                 setScrollIndex(0);
               }}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${
-                activeFilter === f
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${activeFilter === f
                   ? "bg-fuchsia-500 text-white border-fuchsia-500 shadow-[0_0_20px_rgba(217,70,239,0.3)]"
                   : "bg-white/5 text-gray-400 border-white/10 hover:border-white/30 hover:text-white"
-              }`}
+                }`}
             >
               {f}
             </button>
@@ -211,16 +223,15 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
             </div>
 
             {/* Navigation Arrows */}
-            {filteredEvents.length > CARDS_PER_VIEW && (
+            {filteredEvents.length > cardsPerView && (
               <div className="flex justify-end gap-3 mt-6">
                 <button
                   onClick={scrollLeft}
                   disabled={scrollIndex === 0}
-                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                    scrollIndex === 0
+                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${scrollIndex === 0
                       ? "border-white/10 text-white/20 cursor-not-allowed"
                       : "border-white/20 text-white hover:border-fuchsia-400 hover:text-fuchsia-400 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]"
-                  }`}
+                    }`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -229,11 +240,10 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                 <button
                   onClick={scrollRight}
                   disabled={scrollIndex >= maxIndex}
-                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                    scrollIndex >= maxIndex
+                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${scrollIndex >= maxIndex
                       ? "border-white/10 text-white/20 cursor-not-allowed"
                       : "border-white/20 text-white hover:border-fuchsia-400 hover:text-fuchsia-400 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]"
-                  }`}
+                    }`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -251,25 +261,25 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                   {/* Decorative background elements */}
                   <div className="absolute top-0 right-0 -mt-10 -mr-10 w-32 h-32 bg-fuchsia-500/10 rounded-full blur-2xl pointer-events-none"></div>
                   <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none"></div>
-                  
+
                   <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] relative">
                     <svg className="w-10 h-10 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     {/* Tiny decorative stars */}
                     <svg className="absolute -top-2 -right-2 w-4 h-4 text-[#FF9900] animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z"/>
+                      <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z" />
                     </svg>
                     <svg className="absolute -bottom-1 -left-3 w-3 h-3 text-purple-400 animate-pulse" style={{ animationDelay: '1s' }} fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z"/>
+                      <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z" />
                     </svg>
                   </div>
-                  
+
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Something's Brewing!</h3>
                   <p className="text-gray-400 mb-8 max-w-sm text-sm sm:text-base leading-relaxed">
                     We're currently cooking up our next set of hands-on workshops and meetups. Stay tuned for awesomeness!
                   </p>
-                  
+
                   <a
                     href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
                     target="_blank"

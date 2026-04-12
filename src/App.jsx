@@ -6,9 +6,7 @@ import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squ
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
 import CircularCarousel from "./components/CircularCarousel";
 
-const upcomingEvents = [
-  
-];
+const upcomingEvents = [];
 
 const pastEvents = [
   {
@@ -28,17 +26,19 @@ const pastEvents = [
   },
   {
     id: 2,
-    title: "Launch of AWS Cloud Club I²IT: Introduction to Cloud Computing & AWS",
+    title:
+      "Launch of AWS Cloud Club I²IT: Introduction to Cloud Computing & AWS",
     date: "March 9, 2026",
     time: "3:45 PM - 4:45 PM",
     location: "CC",
     description:
       "Join us as we break down the complexities of cloud technology, highlight the opportunities available through our club, and outline our vision for exciting journey ahead.",
-    image: "https://secure.meetupstatic.com/photos/event/1/5/5/8/highres_533045464.webp?w=750",
+    image:
+      "https://secure.meetupstatic.com/photos/event/1/5/5/8/highres_533045464.webp?w=750",
     tags: ["Launch"],
     isUpcoming: false,
-    registrationLink:"https://www.meetup.com/aws-i2it/events/313649260/"
-  }
+    registrationLink: "https://www.meetup.com/aws-i2it/events/313649260/",
+  },
 ];
 
 const faqData = [
@@ -199,7 +199,10 @@ function App() {
         </section>
 
         {/* ═══════════════ EVENTS ═══════════════ */}
-        <EventsSection upcomingEvents={upcomingEvents} pastEvents={pastEvents} />
+        <EventsSection
+          upcomingEvents={upcomingEvents}
+          pastEvents={pastEvents}
+        />
 
         {/* ═══════════════ MEET US ═══════════════ */}
         {<MeetUsSection />}
@@ -351,7 +354,7 @@ function App() {
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                       </div>
                       <span className="text-sm font-semibold">
-                        Join 150+ Cloud Enthusiasts
+                        Join 130+ Cloud Enthusiasts
                       </span>
                     </div>
                   </div>

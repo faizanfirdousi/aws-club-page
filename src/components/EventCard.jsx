@@ -36,15 +36,35 @@ export function EventGridCard({ event }) {
         {/* Date & time */}
         <div className="flex items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-gray-400">
           <span className="flex items-center gap-1.5">
-            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            <svg
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FF9900]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
             </svg>
             {date}
           </span>
           {time && (
             <span className="flex items-center gap-1.5">
-              <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               {time}
             </span>
@@ -63,9 +83,24 @@ export function EventGridCard({ event }) {
 
         {/* Location */}
         <div className="flex items-center text-[10px] sm:text-xs text-gray-400 gap-1.5">
-          <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          <svg
+            className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-fuchsia-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
           </svg>
           {location}
         </div>
@@ -87,11 +122,17 @@ export function EventGridCard({ event }) {
           </div>
 
           <button
-            onClick={() => window.open(registrationLink || "https://www.meetup.com/aws-cloud-club-at-i2it-pune/", "_blank")}
-            className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${isUpcoming
+            onClick={() =>
+              window.open(
+                registrationLink || "https://www.meetup.com/aws-sbg-i2it/",
+                "_blank",
+              )
+            }
+            className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${
+              isUpcoming
                 ? "bg-[#FF9900] hover:bg-[#ffb03a] text-[#0f1b29] shadow-[0_4px_12px_rgba(255,153,0,0.2)]"
                 : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
-              }`}
+            }`}
           >
             {isUpcoming ? "Join Now" : "Details"}
           </button>
@@ -102,7 +143,10 @@ export function EventGridCard({ event }) {
 }
 
 // ───────────────────────── Events Section (with filters + carousel) ─────────────────────────
-export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) {
+export default function EventsSection({
+  upcomingEvents = [],
+  pastEvents = [],
+}) {
   const [activeFilter, setActiveFilter] = useState("All");
   const [scrollIndex, setScrollIndex] = useState(0);
   const [translateX, setTranslateX] = useState(0);
@@ -114,34 +158,38 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
   const filters = ["All", "Upcoming", "Past"];
 
   // Memoize filtered events to keep it stable
-  const filteredEvents = activeFilter === "All" 
-    ? [...upcomingEvents, ...pastEvents] 
-    : (activeFilter === "Upcoming" ? upcomingEvents : pastEvents);
+  const filteredEvents =
+    activeFilter === "All"
+      ? [...upcomingEvents, ...pastEvents]
+      : activeFilter === "Upcoming"
+        ? upcomingEvents
+        : pastEvents;
 
   const updateTranslate = useCallback(() => {
     if (!carouselRef.current) return;
     const containerWidth = carouselRef.current.offsetWidth;
-    
+
     // Determine cards per view based on container/window width
     let cpv = 3;
     if (window.innerWidth < 640) cpv = 1;
     else if (window.innerWidth < 1024) cpv = 2;
-    
+
     setCardsPerView(cpv);
 
     // Calculate card width based on cpv
-    const cw = cpv === 1 ? containerWidth : (containerWidth - GAP * (cpv - 1)) / cpv;
+    const cw =
+      cpv === 1 ? containerWidth : (containerWidth - GAP * (cpv - 1)) / cpv;
     setCardWidth(cw);
 
     // Ensure scrollIndex is within bounds if cpv changes
     const totalEvents = filteredEvents.length;
     const maxIdx = Math.max(0, totalEvents - cpv);
     const safeIndex = Math.min(scrollIndex, maxIdx);
-    
+
     if (safeIndex !== scrollIndex) {
       setScrollIndex(safeIndex);
     }
-    
+
     setTranslateX(safeIndex * (cw + GAP));
   }, [scrollIndex, filteredEvents.length]);
 
@@ -180,10 +228,11 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                 setActiveFilter(f);
                 setScrollIndex(0);
               }}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${activeFilter === f
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${
+                activeFilter === f
                   ? "bg-fuchsia-500 text-white border-fuchsia-500 shadow-[0_0_20px_rgba(217,70,239,0.3)]"
                   : "bg-white/5 text-gray-400 border-white/10 hover:border-white/30 hover:text-white"
-                }`}
+              }`}
             >
               {f}
             </button>
@@ -195,7 +244,9 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
           <div>
             <div className="flex items-center gap-3 mb-6">
               <h3 className="text-xl md:text-2xl font-bold text-white">
-                {activeFilter === "All" ? "All Events" : `${activeFilter} Events`}
+                {activeFilter === "All"
+                  ? "All Events"
+                  : `${activeFilter} Events`}
               </h3>
               <span className="bg-fuchsia-500/20 text-fuchsia-300 text-xs font-bold px-2.5 py-0.5 rounded-full">
                 {filteredEvents.length}
@@ -228,25 +279,47 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                 <button
                   onClick={scrollLeft}
                   disabled={scrollIndex === 0}
-                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${scrollIndex === 0
+                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                    scrollIndex === 0
                       ? "border-white/10 text-white/20 cursor-not-allowed"
                       : "border-white/20 text-white hover:border-fuchsia-400 hover:text-fuchsia-400 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]"
-                    }`}
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
                   </svg>
                 </button>
                 <button
                   onClick={scrollRight}
                   disabled={scrollIndex >= maxIndex}
-                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${scrollIndex >= maxIndex
+                  className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                    scrollIndex >= maxIndex
                       ? "border-white/10 text-white/20 cursor-not-allowed"
                       : "border-white/20 text-white hover:border-fuchsia-400 hover:text-fuchsia-400 hover:shadow-[0_0_15px_rgba(217,70,239,0.2)]"
-                    }`}
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </button>
               </div>
@@ -263,32 +336,64 @@ export default function EventsSection({ upcomingEvents = [], pastEvents = [] }) 
                   <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
                   <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)] relative">
-                    <svg className="w-10 h-10 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg
+                      className="w-10 h-10 text-fuchsia-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
                     </svg>
                     {/* Tiny decorative stars */}
-                    <svg className="absolute -top-2 -right-2 w-4 h-4 text-[#FF9900] animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="absolute -top-2 -right-2 w-4 h-4 text-[#FF9900] animate-pulse"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z" />
                     </svg>
-                    <svg className="absolute -bottom-1 -left-3 w-3 h-3 text-purple-400 animate-pulse" style={{ animationDelay: '1s' }} fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="absolute -bottom-1 -left-3 w-3 h-3 text-purple-400 animate-pulse"
+                      style={{ animationDelay: "1s" }}
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M12 2l2.4 7.6H22l-6 4.8 2.4 7.6-6-4.8-6 4.8 2.4-7.6-6-4.8h7.6z" />
                     </svg>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Something's Brewing!</h3>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">
+                    Something's Brewing!
+                  </h3>
                   <p className="text-gray-400 mb-8 max-w-sm text-sm sm:text-base leading-relaxed">
-                    We're currently cooking up our next set of hands-on workshops and meetups. Stay tuned for awesomeness!
+                    We're currently cooking up our next set of hands-on
+                    workshops and meetups. Stay tuned for awesomeness!
                   </p>
 
                   <a
-                    href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+                    href="https://www.meetup.com/aws-sbg-i2it/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#FF9900] text-[#0f1b29] font-bold py-3 px-8 rounded-full hover:bg-[#e68a00] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(255,153,0,0.25)] hover:shadow-[0_0_30px_rgba(255,153,0,0.4)]"
                   >
                     <span>Get Notified on Meetup</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
                     </svg>
                   </a>
                 </div>

@@ -256,7 +256,7 @@ function App() {
                   {/* Meetup Priority Join Button */}
                   <div className="relative z-10 w-full flex justify-center lg:justify-start mb-8">
                     <a
-                      href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+                      href="https://www.meetup.com/aws-sbg-i2it/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-3 bg-[#F64060] text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(246,64,96,0.2)] hover:shadow-[0_15px_35px_rgba(246,64,96,0.4)] transition-all duration-300"
@@ -324,7 +324,7 @@ function App() {
                   className="flex-1 w-full max-w-lg lg:max-w-none mx-auto flex justify-center lg:justify-end relative group/banner cursor-pointer"
                   onClick={() =>
                     window.open(
-                      "https://www.meetup.com/aws-cloud-club-at-i2it-pune/",
+                      "https://www.meetup.com/aws-sbg-i2it/",
                       "_blank",
                     )
                   }

@@ -78,7 +78,7 @@ export default function Footer() {
                 },
                 {
                   name: "Meetup",
-                  link: "https://www.meetup.com/aws-i2it/",
+                  link: "https://www.meetup.com/aws-sbg-i2it/",
                   viewBox: "0 0 512 512",
                   svg: (
                     <path

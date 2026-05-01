@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -11,18 +11,53 @@ const navLinks = [
 const searchableItems = [
   { title: "Home Section", category: "Navigation", id: "#hero", icon: "🏠" },
   { title: "Meet the Team", category: "Navigation", id: "#about", icon: "👥" },
-  { title: "Upcoming Events", category: "Navigation", id: "#events", icon: "📅" },
-  { title: "Photo Gallery", category: "Navigation", id: "#gallery", icon: "📸" },
-  { title: "Frequently Asked Questions", category: "Navigation", id: "#faq", icon: "❓" },
-  { title: "AWS Free Tier", category: "Resources", link: "https://aws.amazon.com/free/", icon: "☁️" },
-  { title: "Official Meetup Page", category: "Socials", link: "https://www.meetup.com/aws-cloud-club-at-i2it-pune/", icon: "👋" },
-  { title: "LinkedIn Profile", category: "Socials", link: "https://www.linkedin.com/company/awsi2it/", icon: "💼" },
-  { title: "Instagram Page", category: "Socials", link: "https://www.instagram.com/awsclub.i2it/", icon: "📷" },
+  {
+    title: "Upcoming Events",
+    category: "Navigation",
+    id: "#events",
+    icon: "📅",
+  },
+  {
+    title: "Photo Gallery",
+    category: "Navigation",
+    id: "#gallery",
+    icon: "📸",
+  },
+  {
+    title: "Frequently Asked Questions",
+    category: "Navigation",
+    id: "#faq",
+    icon: "❓",
+  },
+  {
+    title: "AWS Free Tier",
+    category: "Resources",
+    link: "https://aws.amazon.com/free/",
+    icon: "☁️",
+  },
+  {
+    title: "Official Meetup Page",
+    category: "Socials",
+    link: "https://www.meetup.com/aws-sbg-i2it/",
+    icon: "👋",
+  },
+  {
+    title: "LinkedIn Profile",
+    category: "Socials",
+    link: "https://www.linkedin.com/company/awsi2it/",
+    icon: "💼",
+  },
+  {
+    title: "Instagram Page",
+    category: "Socials",
+    link: "https://www.instagram.com/awsclub.i2it/",
+    icon: "📷",
+  },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   // Search state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,33 +67,33 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       // Trigger Cmd+K / Ctrl+K
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setIsSearchOpen((prev) => !prev);
       }
       // Escape to close
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setIsSearchOpen(false);
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Lock body scroll when modal is open
   useEffect(() => {
     if (isSearchOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
   }, [isSearchOpen]);
 
@@ -74,37 +109,45 @@ export default function Navbar() {
     setIsSearchOpen(false);
     setSearchQuery("");
     if (item.id) {
-       scrollTo(e, item.id);
+      scrollTo(e, item.id);
     } else if (item.link) {
-       window.open(item.link, '_blank', 'noopener,noreferrer');
+      window.open(item.link, "_blank", "noopener,noreferrer");
     }
   };
 
-  const filteredItems = searchableItems.filter(item => 
-    item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    item.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredItems = searchableItems.filter(
+    (item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-0' : 'py-3'}`}>
-        <nav className={`w-full transition-all duration-300 ease-in-out ${
-          isScrolled 
-            ? 'bg-[#0a0012]/90 backdrop-blur-lg border-b border-white/[0.05] shadow-lg' 
-            : 'bg-transparent border-b border-transparent'
-        }`}>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-0" : "py-3"}`}
+      >
+        <nav
+          className={`w-full transition-all duration-300 ease-in-out ${
+            isScrolled
+              ? "bg-[#0a0012]/90 backdrop-blur-lg border-b border-white/[0.05] shadow-lg"
+              : "bg-transparent border-b border-transparent"
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
-              
               {/* Left: Logo */}
               <a
                 href="#hero"
-                onClick={(e) => scrollTo(e, '#hero')}
+                onClick={(e) => scrollTo(e, "#hero")}
                 className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity flex-shrink-0 group cursor-pointer"
               >
                 <div className="flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/20 transition-all duration-300 group-hover:border-[#FF9900]/40 group-hover:bg-[#FF9900]/20 group-hover:shadow-[0_0_15px_rgba(255,153,0,0.2)] group-hover:-translate-y-0.5 transform">
-                  <svg viewBox="0 0 640 512" fill="currentColor" className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-[#FF9900] transition-transform duration-500 group-hover:scale-110">
-                    <path d="M180.41 203.01c-.72 22.65 10.6 32.68 10.88 39.05a8.164 8.164 0 0 1-4.1 6.27l-12.8 8.96a10.66 10.66 0 0 1-5.63 1.92c-.43-.02-8.19 1.83-20.48-25.61a78.608 78.608 0 0 1-62.61 29.45c-16.28.89-60.4-9.24-58.13-56.21-1.59-38.28 34.06-62.06 70.93-60.05 7.1.02 21.6.37 46.99 6.27v-15.62c2.69-26.46-14.7-46.99-44.81-43.91-2.4.01-19.4-.5-45.84 10.11-7.36 3.38-8.3 2.82-10.75 2.82-7.41 0-4.36-21.48-2.94-24.2 5.21-6.4 35.86-18.35 65.94-18.18a76.857 76.857 0 0 1 55.69 17.28 70.285 70.285 0 0 1 17.67 52.36l-.01 69.29zM93.99 235.4c32.43-.47 46.16-19.97 49.29-30.47 2.46-10.05 2.05-16.41 2.05-27.4-9.67-2.32-23.59-4.85-39.56-4.87-15.15-1.14-42.82 5.63-41.74 32.26-1.24 16.79 11.12 31.4 29.96 30.48zm170.92 23.05c-7.86.72-11.52-4.86-12.68-10.37l-49.8-164.65c-.97-2.78-1.61-5.65-1.92-8.58a4.61 4.61 0 0 1 3.86-5.25c.24-.04-2.13 0 22.25 0 8.78-.88 11.64 6.03 12.55 10.37l35.72 140.83 33.16-140.83c.53-3.22 2.94-11.07 12.8-10.24h17.16c2.17-.18 11.11-.5 12.68 10.37l33.42 142.63L420.98 80.1c.48-2.18 2.72-11.37 12.68-10.37h19.72c.85-.13 6.15-.81 5.25 8.58-.43 1.85 3.41-10.66-52.75 169.9-1.15 5.51-4.82 11.09-12.68 10.37h-18.69c-10.94 1.15-12.51-9.66-12.68-10.75L328.67 110.7l-32.78 136.99c-.16 1.09-1.73 11.9-12.68 10.75h-18.3zm273.48 5.63c-5.88.01-33.92-.3-57.36-12.29a12.802 12.802 0 0 1-7.81-11.91v-10.75c0-8.45 6.2-6.9 8.83-5.89 10.04 4.06 16.48 7.14 28.81 9.6 36.65 7.53 52.77-2.3 56.72-4.48 13.15-7.81 14.19-25.68 5.25-34.95-10.48-8.79-15.48-9.12-53.13-21-4.64-1.29-43.7-13.61-43.79-52.36-.61-28.24 25.05-56.18 69.52-55.95 12.67-.01 46.43 4.13 55.57 15.62 1.35 2.09 2.02 4.55 1.92 7.04v10.11c0 4.44-1.62 6.66-4.87 6.66-7.71-.86-21.39-11.17-49.16-10.75-6.89-.36-39.89.91-38.41 24.97-.43 18.96 26.61 26.07 29.7 26.89 36.46 10.97 48.65 12.79 63.12 29.58 17.14 22.25 7.9 48.3 4.35 55.44-19.08 37.49-68.42 34.44-69.26 34.42zm40.2 104.86c-70.03 51.72-171.69 79.25-258.49 79.25A469.127 469.127 0 0 1 2.83 327.46c-6.53-5.89-.77-13.96 7.17-9.47a637.37 637.37 0 0 0 316.88 84.12 630.22 630.22 0 0 0 241.59-49.55c11.78-5 21.77 7.8 10.12 16.38zm29.19-33.29c-8.96-11.52-59.28-5.38-81.81-2.69-6.79.77-7.94-5.12-1.79-9.47 40.07-28.17 105.88-20.1 113.44-10.63 7.55 9.47-2.05 75.41-39.56 106.91-5.76 4.87-11.27 2.3-8.71-4.1 8.44-21.25 27.39-68.49 18.43-80.02z"/>
+                  <svg
+                    viewBox="0 0 640 512"
+                    fill="currentColor"
+                    className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-[#FF9900] transition-transform duration-500 group-hover:scale-110"
+                  >
+                    <path d="M180.41 203.01c-.72 22.65 10.6 32.68 10.88 39.05a8.164 8.164 0 0 1-4.1 6.27l-12.8 8.96a10.66 10.66 0 0 1-5.63 1.92c-.43-.02-8.19 1.83-20.48-25.61a78.608 78.608 0 0 1-62.61 29.45c-16.28.89-60.4-9.24-58.13-56.21-1.59-38.28 34.06-62.06 70.93-60.05 7.1.02 21.6.37 46.99 6.27v-15.62c2.69-26.46-14.7-46.99-44.81-43.91-2.4.01-19.4-.5-45.84 10.11-7.36 3.38-8.3 2.82-10.75 2.82-7.41 0-4.36-21.48-2.94-24.2 5.21-6.4 35.86-18.35 65.94-18.18a76.857 76.857 0 0 1 55.69 17.28 70.285 70.285 0 0 1 17.67 52.36l-.01 69.29zM93.99 235.4c32.43-.47 46.16-19.97 49.29-30.47 2.46-10.05 2.05-16.41 2.05-27.4-9.67-2.32-23.59-4.85-39.56-4.87-15.15-1.14-42.82 5.63-41.74 32.26-1.24 16.79 11.12 31.4 29.96 30.48zm170.92 23.05c-7.86.72-11.52-4.86-12.68-10.37l-49.8-164.65c-.97-2.78-1.61-5.65-1.92-8.58a4.61 4.61 0 0 1 3.86-5.25c.24-.04-2.13 0 22.25 0 8.78-.88 11.64 6.03 12.55 10.37l35.72 140.83 33.16-140.83c.53-3.22 2.94-11.07 12.8-10.24h17.16c2.17-.18 11.11-.5 12.68 10.37l33.42 142.63L420.98 80.1c.48-2.18 2.72-11.37 12.68-10.37h19.72c.85-.13 6.15-.81 5.25 8.58-.43 1.85 3.41-10.66-52.75 169.9-1.15 5.51-4.82 11.09-12.68 10.37h-18.69c-10.94 1.15-12.51-9.66-12.68-10.75L328.67 110.7l-32.78 136.99c-.16 1.09-1.73 11.9-12.68 10.75h-18.3zm273.48 5.63c-5.88.01-33.92-.3-57.36-12.29a12.802 12.802 0 0 1-7.81-11.91v-10.75c0-8.45 6.2-6.9 8.83-5.89 10.04 4.06 16.48 7.14 28.81 9.6 36.65 7.53 52.77-2.3 56.72-4.48 13.15-7.81 14.19-25.68 5.25-34.95-10.48-8.79-15.48-9.12-53.13-21-4.64-1.29-43.7-13.61-43.79-52.36-.61-28.24 25.05-56.18 69.52-55.95 12.67-.01 46.43 4.13 55.57 15.62 1.35 2.09 2.02 4.55 1.92 7.04v10.11c0 4.44-1.62 6.66-4.87 6.66-7.71-.86-21.39-11.17-49.16-10.75-6.89-.36-39.89.91-38.41 24.97-.43 18.96 26.61 26.07 29.7 26.89 36.46 10.97 48.65 12.79 63.12 29.58 17.14 22.25 7.9 48.3 4.35 55.44-19.08 37.49-68.42 34.44-69.26 34.42zm40.2 104.86c-70.03 51.72-171.69 79.25-258.49 79.25A469.127 469.127 0 0 1 2.83 327.46c-6.53-5.89-.77-13.96 7.17-9.47a637.37 637.37 0 0 0 316.88 84.12 630.22 630.22 0 0 0 241.59-49.55c11.78-5 21.77 7.8 10.12 16.38zm29.19-33.29c-8.96-11.52-59.28-5.38-81.81-2.69-6.79.77-7.94-5.12-1.79-9.47 40.07-28.17 105.88-20.1 113.44-10.63 7.55 9.47-2.05 75.41-39.56 106.91-5.76 4.87-11.27 2.3-8.71-4.1 8.44-21.25 27.39-68.49 18.43-80.02z" />
                   </svg>
                 </div>
                 <div className="flex flex-col">
@@ -128,16 +171,30 @@ export default function Navbar() {
                     <span className="absolute bottom-1.5 left-1/2 w-0 h-[2px] bg-[#FF9900] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-1/2 opacity-0 group-hover:opacity-100 rounded-full"></span>
                   </a>
                 ))}
-                
+
                 <div className="w-px h-5 bg-white/10 mx-3"></div>
-                
-                <button 
+
+                <button
                   onClick={() => setIsSearchOpen(true)}
                   className="group flex items-center gap-2 px-3 py-1.5 rounded-md text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none border border-transparent hover:border-white/10"
                 >
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                  <span>Search</span> 
-                  <kbd className="font-mono bg-black/20 border border-white/10 px-1.5 rounded text-[10px] ml-1 transition-colors duration-300 group-hover:border-white/20 group-hover:bg-black/40 shadow-sm">⌘K</kbd>
+                  <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FF9900]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                  <span>Search</span>
+                  <kbd className="font-mono bg-black/20 border border-white/10 px-1.5 rounded text-[10px] ml-1 transition-colors duration-300 group-hover:border-white/20 group-hover:bg-black/40 shadow-sm">
+                    ⌘K
+                  </kbd>
                 </button>
               </div>
 
@@ -154,26 +211,49 @@ export default function Navbar() {
                       {link.name}
                     </a>
                   ))}
-                  <button 
+                  <button
                     onClick={() => setIsSearchOpen(true)}
                     className="p-1 px-1.5 sm:px-2 text-gray-400 hover:text-white focus:outline-none flex-shrink-0 transition-all duration-200 hover:bg-white/10 rounded-full ml-0.5 sm:ml-1"
                   >
-                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <svg
+                      className="w-3 h-3 sm:w-3.5 sm:h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
                   </button>
                 </div>
               </div>
 
               {/* Right: Solid CTA Button */}
               <a
-                href="https://www.meetup.com/aws-cloud-club-at-i2it-pune/"
+                href="https://www.meetup.com/aws-sbg-i2it/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-3 sm:px-6 py-1.5 sm:py-2.5 inline-flex flex-shrink-0 items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold transition-all duration-300 bg-[#FF9900] text-[#0f1b29] hover:bg-[#ffb03a] rounded-full shadow-[0_4px_14px_rgba(255,153,0,0.25)] hover:shadow-[0_6px_20px_rgba(255,153,0,0.4)] hover:-translate-y-0.5 active:translate-y-0 ml-1 sm:ml-2"
               >
                 Join Us
-                <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 -mr-0.5 sm:-mr-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <svg
+                  className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 -mr-0.5 sm:-mr-1 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  ></path>
+                </svg>
               </a>
-
             </div>
           </div>
         </nav>
@@ -183,23 +263,32 @@ export default function Navbar() {
       {isSearchOpen && (
         <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 pointer-events-auto">
           {/* Frosted Glass Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setIsSearchOpen(false)}
           ></div>
-          
+
           {/* Modal Container */}
           <div className="relative w-full max-w-xl bg-gray-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.1)] overflow-hidden flex flex-col transform transition-all animate-in fade-in zoom-in-95 duration-200">
-            
             {/* Search Input Box */}
             <div className="flex items-center px-5 py-4 border-b border-white/10 bg-white/[0.02]">
-              <svg className="w-6 h-6 text-fuchsia-400 opacity-80 mr-4 drop-shadow-[0_0_5px_rgba(232,121,249,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              <svg
+                className="w-6 h-6 text-fuchsia-400 opacity-80 mr-4 drop-shadow-[0_0_5px_rgba(232,121,249,0.5)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
               </svg>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 autoFocus
-                placeholder="Search resources, events, or links..." 
+                placeholder="Search resources, events, or links..."
                 className="flex-1 bg-transparent border-none outline-none text-white text-lg placeholder:text-white/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -215,7 +304,7 @@ export default function Navbar() {
                 <ul className="space-y-1">
                   {filteredItems.map((item, idx) => (
                     <li key={idx}>
-                      <button 
+                      <button
                         onClick={(e) => handleSearchResultClick(item, e)}
                         className="w-full flex items-center px-4 py-3.5 rounded-xl hover:bg-white/[0.08] focus:bg-white/[0.08] outline-none transition-colors group text-left"
                       >
@@ -223,11 +312,15 @@ export default function Navbar() {
                           {item.icon}
                         </span>
                         <div className="flex flex-col flex-1">
-                          <span className="text-white text-[15px] font-semibold tracking-wide drop-shadow-sm">{item.title}</span>
-                          <span className="text-fuchsia-300/60 text-[10px] uppercase tracking-wider font-bold mt-0.5">{item.category}</span>
+                          <span className="text-white text-[15px] font-semibold tracking-wide drop-shadow-sm">
+                            {item.title}
+                          </span>
+                          <span className="text-fuchsia-300/60 text-[10px] uppercase tracking-wider font-bold mt-0.5">
+                            {item.category}
+                          </span>
                         </div>
                         <span className="opacity-0 group-hover:opacity-100 text-white/40 text-xs font-semibold tracking-wider transition-opacity flex items-center gap-1">
-                          Jump To 
+                          Jump To
                           <span className="text-lg">↵</span>
                         </span>
                       </button>
@@ -236,17 +329,25 @@ export default function Navbar() {
                 </ul>
               ) : (
                 <div className="px-4 py-16 text-center flex flex-col items-center">
-                  <span className="text-5xl mb-4 opacity-40 grayscale filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">🛸</span>
-                  <p className="text-white/60 font-semibold tracking-wide text-lg mb-1">No results matching "{searchQuery}"</p>
-                  <p className="text-white/30 text-sm">Try searching for "Events" or "Resources"</p>
+                  <span className="text-5xl mb-4 opacity-40 grayscale filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                    🛸
+                  </span>
+                  <p className="text-white/60 font-semibold tracking-wide text-lg mb-1">
+                    No results matching "{searchQuery}"
+                  </p>
+                  <p className="text-white/30 text-sm">
+                    Try searching for "Events" or "Resources"
+                  </p>
                 </div>
               )}
             </div>
-            
+
             {/* Footer */}
             <div className="px-5 py-2.5 bg-white/[0.01] border-t border-white/5 flex items-center justify-between text-[10px] text-white/30 font-semibold tracking-wide">
               <span>Quick Navigation Menu</span>
-              <span className="flex items-center gap-1 text-fuchsia-400/50">AWS I²IT System Dashboard</span>
+              <span className="flex items-center gap-1 text-fuchsia-400/50">
+                AWS I²IT System Dashboard
+              </span>
             </div>
           </div>
         </div>

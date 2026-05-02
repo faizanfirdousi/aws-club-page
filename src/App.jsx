@@ -19,7 +19,7 @@ const pastEvents = [
     time: "3:45 PM - 4:45 PM",
     location: "Room 302 PPCRC",
     description:
-      "Learn how to deploy your project, make it accessible from anywhere, and give it a real presence on the internet.",
+      "Learn how to deploy your project, make it accessible from anywhere nd everywhere, and give it a real presence on the internet.",
     image:
       "https://secure.meetupstatic.com/photos/event/7/b/4/b/highres_533551563.webp?w=750",
     tags: ["Deploy"],

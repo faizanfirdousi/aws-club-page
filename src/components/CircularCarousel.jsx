@@ -58,8 +58,8 @@ const StackedGalleryCarousel = () => {
             onClick={() => setActiveFilter(f)}
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${
               activeFilter === f
-                ? "bg-fuchsia-500 text-white border-fuchsia-500 shadow-[0_0_20px_rgba(217,70,239,0.3)]"
-                : "bg-white/5 text-gray-400 border-white/10 hover:border-white/30 hover:text-white"
+                ? "bg-orange-500 text-white border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                : "bg-background text-muted-foreground border-border hover:border-muted-foreground hover:text-foreground"
             }`}
           >
             {f}
@@ -67,7 +67,7 @@ const StackedGalleryCarousel = () => {
         ))}
       </div>
 
-      <div className="relative w-full py-16 md:py-24 bg-white/[0.02] border border-white/10 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col justify-center items-center group">
+      <div className="relative w-full py-16 md:py-24 bg-card border border-border rounded-3xl shadow-lg overflow-hidden flex flex-col justify-center items-center group">
           
          {/* 3D Scene Perspective Container */}
          <div 
@@ -113,10 +113,10 @@ const StackedGalleryCarousel = () => {
                     onClick={() => !isCenter && handleCardClick(index)}
                   >
                      {/* Card Frame - Reduced Sizes */}
-                     <div className={`relative w-[280px] md:w-[420px] lg:w-[560px] h-[180px] md:h-[260px] lg:h-[340px] rounded-2xl overflow-hidden scroll-smooth transition-all duration-500 bg-[#162638] ${
+                     <div className={`relative w-[280px] md:w-[420px] lg:w-[560px] h-[180px] md:h-[260px] lg:h-[340px] rounded-2xl overflow-hidden scroll-smooth transition-all duration-500 bg-muted ${
                          isCenter 
-                           ? 'border border-fuchsia-500/60 shadow-[0_20px_60px_rgba(217,70,239,0.35)] ring-1 ring-fuchsia-400/20 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(217,70,239,0.55)]' 
-                           : 'border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.6)] hover:-translate-y-1 hover:shadow-xl'
+                           ? 'border-2 border-orange-500/60 shadow-[0_20px_60px_rgba(249,115,22,0.35)] ring-1 ring-orange-400/20 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(249,115,22,0.55)]' 
+                           : 'border border-border shadow-md hover:-translate-y-1 hover:shadow-lg'
                      }`}>
                         {/* Main Image without cropping */}
                         <img
@@ -128,7 +128,7 @@ const StackedGalleryCarousel = () => {
                         
                         {/* Interactive edge lighting for the center card */}
                         {isCenter && (
-                           <div className="absolute inset-0 bg-gradient-to-tr from-fuchsia-500/0 via-fuchsia-400/5 to-white/10 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                           <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-orange-400/10 to-white/10 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         )}
                      </div>
                   </div>
@@ -137,8 +137,8 @@ const StackedGalleryCarousel = () => {
          </div>
 
          {/* Ambient Depth Blurs */}
-         <div className="absolute top-1/2 left-[15%] -translate-y-1/2 w-64 h-64 bg-fuchsia-600 rounded-full mix-blend-screen filter blur-[140px] opacity-10 pointer-events-none"></div>
-         <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-64 h-64 bg-cyan-600 rounded-full mix-blend-screen filter blur-[140px] opacity-10 pointer-events-none"></div>
+         <div className="absolute top-1/2 left-[15%] -translate-y-1/2 w-64 h-64 bg-orange-600 rounded-full mix-blend-screen filter blur-[140px] opacity-[0.15] pointer-events-none"></div>
+         <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-64 h-64 bg-blue-600 rounded-full mix-blend-screen filter blur-[140px] opacity-[0.15] pointer-events-none"></div>
 
          {/* Progress Indicator Tracks */}
         <div className="mt-8 flex gap-3 sm:gap-4 z-30">
@@ -163,8 +163,8 @@ const StackedGalleryCarousel = () => {
                   handleCardClick(bestIndex);
                 }}
                 className={`h-1.5 rounded-full transition-all duration-500 ${isActive
-                    ? 'w-10 bg-fuchsia-400 shadow-[0_0_12px_rgba(217,70,239,0.9)]'
-                    : 'w-2 sm:w-3 bg-white/20 hover:bg-white/40'
+                    ? 'w-10 bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.6)]'
+                    : 'w-2 sm:w-3 bg-muted-foreground/30 hover:bg-muted-foreground/60'
                   }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />

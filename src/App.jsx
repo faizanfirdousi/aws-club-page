@@ -2,9 +2,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import EventsSection from "./components/EventCard";
 import MeetUsSection from "./components/MeetUsSection";
-import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares";
+import NoiseDarkGradient from "@/components/ui/noise-dark-blue-gradient-with-squares"; // Will be removed
+
 import ScrollFAQAccordion from "@/components/ui/scroll-faqaccordion";
 import CircularCarousel from "./components/CircularCarousel";
+import { motion } from "framer-motion";
 
 const upcomingEvents = [];
 
@@ -70,9 +72,9 @@ const faqData = [
 
 function App() {
   return (
-    <div className="relative min-h-screen text-white">
-      {/* Full-page animated noise gradient with squares background */}
-      <NoiseDarkGradient />
+    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
+      {/* Dynamic Background Pattern - Subtle dots instead of heavy noise */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at center, currentColor 1px, transparent 1px)", backgroundSize: "24px 24px" }}></div>
 
       {/* Main content layer */}
       <div className="relative z-10">
@@ -81,39 +83,71 @@ function App() {
         {/* ═══════════════ HERO ═══════════════ */}
         <section
           id="hero"
-          className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+          className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]"
         >
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="flex justify-center mb-5">
-              <img
-                src="/background_removed.png"
-                alt="AWS Cloud Club I²IT logo"
-                className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain drop-shadow-[0_0_26px_rgba(250,250,255,0.4)]"
-                loading="lazy"
-              />
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white">
-              AWS Cloud Club I²IT
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10">
-              A student-driven community at I²IT where you explore AWS, cloud,
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            
+            {/* Logo */}
+            <motion.img 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              src="/background_removed.png" 
+              alt="AWS Cloud Club Logo" 
+              className="w-32 h-32 md:w-40 md:h-40 object-contain mb-8 drop-shadow-2xl invert dark:invert-0 hover:scale-110 transition-transform duration-700" 
+            />
+
+            {/* Pill Badge */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-sm font-medium text-muted-foreground shadow-sm hover:bg-accent hover:text-accent-foreground hover:scale-105 hover:shadow-md transition-all cursor-pointer duration-300"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-orange-500 animate-pulse"></span>
+              Welcome to AWS Cloud Club I²IT
+            </motion.div>
+
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6 text-foreground leading-[1.1]"
+            >
+              Architecting the Future on AWS.
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed font-medium"
+            >
+              A student-driven community at I²IT exploring AWS, cloud,
               and modern infrastructure through hands-on workshops, projects,
               and peer learning.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto"
+            >
+              <a
+                href="#events"
+                className="group inline-flex justify-center items-center bg-foreground text-background font-semibold py-3.5 px-8 rounded-full hover:bg-foreground/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.1)]"
+              >
+                Upcoming Events
+                <svg className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
               <a
                 href="#why-join"
-                className="bg-white text-black font-semibold py-3 px-8 rounded-full hover:bg-gray-200 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
+                className="inline-flex justify-center items-center bg-background text-foreground font-semibold py-3.5 px-8 rounded-full border border-border hover:bg-muted transition-all duration-300 hover:-translate-y-1"
               >
                 Discover Our Mission
               </a>
-              <a
-                href="#events"
-                className="bg-white/5 backdrop-blur-md text-gray-300 font-semibold py-3 px-8 rounded-full border border-white/15 hover:border-white/40 hover:bg-white/10 transition-colors duration-300"
-              >
-                Upcoming Events
-              </a>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -126,11 +160,11 @@ function App() {
                 <p className="text-fuchsia-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3">
                   Why us
                 </p>
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-white">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-foreground">
                   More than just a club.
                 </h2>
               </div>
-              <p className="text-gray-400 max-w-sm text-base md:text-lg md:text-right">
+              <p className="text-muted-foreground max-w-sm text-base md:text-lg md:text-right">
                 We&rsquo;re building the kind of community we wished existed
                 when we started.
               </p>
@@ -139,61 +173,79 @@ function App() {
             {/* Bento grid — asymmetric layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
               {/* Card 1 — spans full width on top */}
-              <div className="md:col-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/[0.04] border border-white/10 hover:border-fuchsia-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+                className="md:col-span-2 group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-orange-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10"
+              >
                 {/* Decorative glow */}
-                <div className="absolute -top-20 -right-20 w-60 h-60 bg-fuchsia-500/15 rounded-full blur-[100px] pointer-events-none group-hover:bg-fuchsia-500/25 transition-all duration-700"></div>
+                <div className="absolute -top-20 -right-20 w-60 h-60 bg-orange-500/10 dark:bg-orange-500/15 rounded-full blur-[100px] pointer-events-none group-hover:bg-orange-500/20 group-hover:scale-150 transition-all duration-700"></div>
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-4 sm:gap-6">
-                  <span className="text-5xl sm:text-6xl md:text-8xl font-black text-white/[0.35] select-none leading-none shrink-0">
+                  <span className="text-5xl sm:text-6xl md:text-8xl font-black text-muted-foreground/20 group-hover:text-muted-foreground/30 transition-colors duration-500 select-none leading-none shrink-0 group-hover:-rotate-3 group-hover:scale-110">
                     01
                   </span>
                   <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-orange-500 transition-colors duration-300">
                       Learn by breaking things
                     </h3>
-                    <p className="text-gray-400 text-base md:text-lg max-w-2xl leading-relaxed">
+                    <p className="text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
                       Spin up real AWS infrastructure, deploy actual apps, and
                       figure out cloud by doing, not by watching slides. Every
                       session is a hands-on lab, not a lecture.
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card 2 — left half */}
-              <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/[0.04] border border-white/10 hover:border-violet-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10">
-                <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-violet-600/15 rounded-full blur-[80px] pointer-events-none group-hover:bg-violet-600/25 transition-all duration-700"></div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10"
+              >
+                <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-blue-600/10 dark:bg-blue-600/15 rounded-full blur-[80px] pointer-events-none group-hover:bg-blue-600/20 group-hover:scale-150 transition-all duration-700"></div>
                 <div className="relative z-10">
-                  <span className="text-5xl sm:text-6xl font-black text-white/[0.35] select-none leading-none block mb-3 sm:mb-4">
+                  <span className="text-5xl sm:text-6xl font-black text-muted-foreground/20 group-hover:text-muted-foreground/30 transition-colors duration-500 select-none leading-none block mb-3 sm:mb-4 group-hover:-rotate-3 group-hover:scale-110 origin-bottom-left">
                     02
                   </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-blue-500 transition-colors duration-300">
                     Your people are here
                   </h3>
-                  <p className="text-gray-400 text-base leading-relaxed">
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     Late-night debugging sessions, shared wins on certification
                     day, and a group chat that actually helps. You&rsquo;ll find
                     peers, mentors, and future co-founders here.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card 3 — right half */}
-              <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/[0.04] border border-white/10 hover:border-purple-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10">
-                <div className="absolute -top-12 -right-12 w-44 h-44 bg-purple-600/15 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-600/25 transition-all duration-700"></div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-400/40 transition-all duration-500 p-6 sm:p-8 md:p-10"
+              >
+                <div className="absolute -top-12 -right-12 w-44 h-44 bg-purple-600/10 dark:bg-purple-600/15 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-600/20 group-hover:scale-150 transition-all duration-700"></div>
                 <div className="relative z-10">
-                  <span className="text-5xl sm:text-6xl font-black text-white/[0.35] select-none leading-none block mb-3 sm:mb-4">
+                  <span className="text-5xl sm:text-6xl font-black text-muted-foreground/20 group-hover:text-muted-foreground/30 transition-colors duration-500 select-none leading-none block mb-3 sm:mb-4 group-hover:rotate-3 group-hover:scale-110 origin-bottom-right">
                     03
                   </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-purple-500 transition-colors duration-300">
                     Career stuff, sorted
                   </h3>
-                  <p className="text-gray-400 text-base leading-relaxed">
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     AWS certifications, resume roasts, mock interviews, and
                     internship leads. We pool everything we find so nobody
                     figures it out alone.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -211,10 +263,10 @@ function App() {
         <section id="gallery" className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
                 Community Moments
               </h2>
-              <p className="max-w-2xl mx-auto text-lg text-gray-500">
+              <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
                 A visual timeline of our journey, events, and the amazing people
                 who make up our community.
               </p>
@@ -233,21 +285,27 @@ function App() {
         {/* ═══════════════ SOCIALS & CTA ═══════════════ */}
         <section className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white/3 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 md:p-12 border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.4)] relative group transform-gpu transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-[0_40px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8 }}
+              className="bg-card rounded-3xl p-6 sm:p-10 md:p-12 border border-border shadow-xl relative group transform-gpu transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-2xl overflow-hidden"
+            >
               {/* Simplified Background Decorative Glows */}
-              <div className="absolute top-0 right-0 -mt-20 -mr-20 w-100 h-[400px] bg-fuchsia-500/10 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700 group-hover:opacity-40"></div>
-              <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700 group-hover:opacity-40"></div>
+              <div className="absolute top-0 right-0 -mt-20 -mr-20 w-[400px] h-[400px] bg-orange-500/5 dark:bg-orange-500/10 rounded-full blur-[100px] pointer-events-none transition-all duration-700 group-hover:opacity-60 group-hover:scale-110"></div>
+              <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-[400px] h-[400px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[100px] pointer-events-none transition-all duration-700 group-hover:opacity-60 group-hover:scale-110"></div>
 
               <div className="relative z-10 flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
                 {/* Left side content (Text and Socials) */}
                 <div className="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
-                  <p className="text-fuchsia-400 text-sm font-bold uppercase tracking-[0.2em] mb-3">
+                  <p className="text-orange-500 text-sm font-bold uppercase tracking-[0.2em] mb-3">
                     Connect & Join
                   </p>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white text-balance">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-foreground text-balance">
                     Ready to start your cloud journey?
                   </h2>
-                  <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-xl text-balance">
+                  <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl text-balance">
                     Learn AWS step by step with peers, apply concepts in your
                     projects, and grow into cloud, DevOps, and modern
                     infrastructure.
@@ -259,7 +317,7 @@ function App() {
                       href="https://www.meetup.com/aws-sbg-i2it/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 bg-[#F64060] text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 shadow-[0_10px_30px_rgba(246,64,96,0.2)] hover:shadow-[0_15px_35px_rgba(246,64,96,0.4)] transition-all duration-300"
+                      className="inline-flex items-center gap-3 bg-[#F64060] text-white font-bold py-4 px-8 rounded-full transform hover:-translate-y-1 hover:scale-105 shadow-[0_10px_30px_rgba(246,64,96,0.2)] hover:shadow-[0_15px_40px_rgba(246,64,96,0.4)] transition-all duration-300"
                     >
                       <svg
                         className="w-6 h-6"
@@ -280,7 +338,7 @@ function App() {
 
                   {/* Secondary Socials */}
                   <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <p className="text-gray-400 font-semibold tracking-widest uppercase text-xs sm:mr-2">
+                    <p className="text-muted-foreground font-semibold tracking-widest uppercase text-xs sm:mr-2">
                       Also Connect On
                     </p>
                     <div className="flex items-center gap-4">
@@ -289,7 +347,7 @@ function App() {
                         href="https://www.linkedin.com/company/awsi2it/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex justify-center items-center h-12 w-12 bg-white/[0.05] border border-white/10 rounded-full hover:bg-[#0A66C2] hover:text-white transform hover:-translate-y-1 transition-all duration-300"
+                        className="flex justify-center items-center h-12 w-12 bg-muted border border-border rounded-full hover:bg-[#0A66C2] hover:text-white text-foreground transform hover:-translate-y-1 transition-all duration-300"
                         title="LinkedIn"
                       >
                         <svg
@@ -305,7 +363,7 @@ function App() {
                         href="https://www.instagram.com/awsclub.i2it/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex justify-center items-center h-12 w-12 bg-white/[0.05] border border-white/10 rounded-full hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white transform hover:-translate-y-1 transition-all duration-300"
+                        className="flex justify-center items-center h-12 w-12 bg-muted border border-border rounded-full hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white text-foreground transform hover:-translate-y-1 transition-all duration-300"
                         title="Instagram"
                       >
                         <svg
@@ -333,7 +391,7 @@ function App() {
                   <div className="absolute inset-0 bg-[#F64060]/10 blur-3xl rounded-2xl transition-opacity duration-700 group-hover/banner:opacity-40"></div>
 
                   {/* Banner Image Container */}
-                  <div className="relative z-10 w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform transition-transform duration-500 ease-out group-hover/banner:scale-[1.02]">
+                  <div className="relative z-10 w-full overflow-hidden rounded-2xl border border-border shadow-2xl transform transition-all duration-500 ease-out group-hover/banner:scale-[1.03] group-hover/banner:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                     <img
                       src="/meetup_banner.jpg"
                       alt="AWS Cloud Clubs Banner"
@@ -348,7 +406,7 @@ function App() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
 
                     {/* Banner Overlay Info */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/10 opacity-0 transform translate-y-2 transition-all duration-300 group-hover/banner:opacity-100 group-hover/banner:translate-y-0 text-white">
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/20 opacity-0 transform translate-y-2 transition-all duration-300 group-hover/banner:opacity-100 group-hover/banner:translate-y-0 text-white">
                       <div className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -360,7 +418,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 

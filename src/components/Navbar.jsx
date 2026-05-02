@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTheme } from "./ThemeProvider";
+import { Sun, Moon } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -57,6 +59,7 @@ const searchableItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // Search state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -129,7 +132,7 @@ export default function Navbar() {
         <nav
           className={`w-full transition-all duration-300 ease-in-out ${
             isScrolled
-              ? "bg-[#0a0012]/90 backdrop-blur-lg border-b border-white/[0.05] shadow-lg"
+              ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-sm"
               : "bg-transparent border-b border-transparent"
           }`}
         >
@@ -151,32 +154,30 @@ export default function Navbar() {
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-white text-base sm:text-lg lg:text-xl tracking-wide hidden sm:block">
-                    AWS <span className="font-light text-gray-400">I²IT</span>
+                  <span className="font-bold text-foreground text-base sm:text-lg lg:text-xl tracking-wide hidden sm:block">
+                    AWS <span className="font-light text-muted-foreground">I²IT</span>
                   </span>
                 </div>
               </a>
 
               {/* Center: Desktop Navigation */}
-              <div className="hidden lg:flex flex-1 justify-center items-center gap-2 mx-8 text-sm">
+              <div className="hidden lg:flex flex-1 justify-center items-center gap-6 mx-8 text-[15px]">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => scrollTo(e, link.href)}
-                    className="relative px-4 py-2 font-medium text-gray-400 hover:text-white transition-colors duration-300 group"
+                    className="relative px-2 py-2 font-semibold text-muted-foreground hover:text-foreground transition-colors duration-300 group"
                   >
                     {link.name}
                     {/* Hover scalable underline hint */}
-                    <span className="absolute bottom-1.5 left-1/2 w-0 h-[2px] bg-[#FF9900] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-1/2 opacity-0 group-hover:opacity-100 rounded-full"></span>
+                    <span className="absolute bottom-1 left-1/2 w-0 h-[2px] bg-[#FF9900] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-3/4 opacity-0 group-hover:opacity-100 rounded-full"></span>
                   </a>
                 ))}
 
-                <div className="w-px h-5 bg-white/10 mx-3"></div>
-
                 <button
                   onClick={() => setIsSearchOpen(true)}
-                  className="group flex items-center gap-2 px-3 py-1.5 rounded-md text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300 focus:outline-none border border-transparent hover:border-white/10"
+                  className="group flex items-center gap-2 px-3 py-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300 focus:outline-none border border-transparent hover:border-border"
                 >
                   <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#FF9900]"
@@ -192,7 +193,7 @@ export default function Navbar() {
                     ></path>
                   </svg>
                   <span>Search</span>
-                  <kbd className="font-mono bg-black/20 border border-white/10 px-1.5 rounded text-[10px] ml-1 transition-colors duration-300 group-hover:border-white/20 group-hover:bg-black/40 shadow-sm">
+                  <kbd className="font-mono bg-muted border border-border px-1.5 rounded text-[10px] ml-1 transition-colors duration-300 group-hover:border-border group-hover:bg-muted shadow-sm">
                     ⌘K
                   </kbd>
                 </button>
@@ -200,20 +201,20 @@ export default function Navbar() {
 
               {/* Center: Mobile Navigation (Simplified) */}
               <div className="flex lg:hidden flex-1 justify-center relative px-1 sm:px-2">
-                <div className="flex items-center p-0.5 sm:p-1 rounded-full bg-[#0f1b29]/50 border border-white/5 overflow-x-auto no-scrollbar max-w-[160px] sm:max-w-[320px] shadow-inner backdrop-blur-sm">
+                <div className="flex items-center p-0.5 sm:p-1 rounded-full bg-muted/50 border border-border overflow-x-auto no-scrollbar max-w-[160px] sm:max-w-[320px] shadow-inner backdrop-blur-sm">
                   {navLinks.map((link) => (
                     <a
                       key={link.name}
                       href={link.href}
                       onClick={(e) => scrollTo(e, link.href)}
-                      className="px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white hover:bg-white/10 flex-shrink-0 transition-all duration-200"
+                      className="px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted flex-shrink-0 transition-all duration-200"
                     >
                       {link.name}
                     </a>
                   ))}
                   <button
                     onClick={() => setIsSearchOpen(true)}
-                    className="p-1 px-1.5 sm:px-2 text-gray-400 hover:text-white focus:outline-none flex-shrink-0 transition-all duration-200 hover:bg-white/10 rounded-full ml-0.5 sm:ml-1"
+                    className="p-1 px-1.5 sm:px-2 text-muted-foreground hover:text-foreground focus:outline-none flex-shrink-0 transition-all duration-200 hover:bg-muted rounded-full ml-0.5 sm:ml-1"
                   >
                     <svg
                       className="w-3 h-3 sm:w-3.5 sm:h-3.5"
@@ -232,16 +233,29 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Right: Solid CTA Button */}
-              <a
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus:outline-none ml-2"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? (
+                    <Sun className="h-5 w-5" />
+                  ) : (
+                    <Moon className="h-5 w-5" />
+                  )}
+                </button>
+
+                {/* Right: Solid CTA Button */}
+                <a
                 href="https://www.meetup.com/aws-sbg-i2it/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-3 sm:px-6 py-1.5 sm:py-2.5 inline-flex flex-shrink-0 items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold transition-all duration-300 bg-[#FF9900] text-[#0f1b29] hover:bg-[#ffb03a] rounded-full shadow-[0_4px_14px_rgba(255,153,0,0.25)] hover:shadow-[0_6px_20px_rgba(255,153,0,0.4)] hover:-translate-y-0.5 active:translate-y-0 ml-1 sm:ml-2"
+                className="group px-4 sm:px-6 py-2 inline-flex flex-shrink-0 items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold transition-all duration-300 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 ml-1 sm:ml-2"
               >
                 Join Us
                 <svg
-                  className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-1.5 -mr-0.5 sm:-mr-1 transition-transform duration-300 group-hover:translate-x-1"
+                  className="w-3 h-3 sm:w-4 sm:h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -254,6 +268,7 @@ export default function Navbar() {
                   ></path>
                 </svg>
               </a>
+              </div>
             </div>
           </div>
         </nav>
@@ -264,14 +279,14 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 pointer-events-auto">
           {/* Frosted Glass Backdrop */}
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            className="absolute inset-0 bg-background/60 backdrop-blur-sm transition-opacity"
             onClick={() => setIsSearchOpen(false)}
           ></div>
 
           {/* Modal Container */}
-          <div className="relative w-full max-w-xl bg-gray-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.1)] overflow-hidden flex flex-col transform transition-all animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative w-full max-w-xl bg-card border border-border rounded-2xl shadow-xl overflow-hidden flex flex-col transform transition-all animate-in fade-in zoom-in-95 duration-200">
             {/* Search Input Box */}
-            <div className="flex items-center px-5 py-4 border-b border-white/10 bg-white/[0.02]">
+            <div className="flex items-center px-5 py-4 border-b border-border bg-muted/20">
               <svg
                 className="w-6 h-6 text-fuchsia-400 opacity-80 mr-4 drop-shadow-[0_0_5px_rgba(232,121,249,0.5)]"
                 fill="none"
@@ -289,11 +304,11 @@ export default function Navbar() {
                 type="text"
                 autoFocus
                 placeholder="Search resources, events, or links..."
-                className="flex-1 bg-transparent border-none outline-none text-white text-lg placeholder:text-white/30"
+                className="flex-1 bg-transparent border-none outline-none text-foreground text-lg placeholder:text-muted-foreground"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <kbd className="hidden sm:inline-flex items-center font-mono bg-white/10 border border-white/10 px-2.5 py-1 rounded-md text-[10px] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] font-bold text-white/50 tracking-wider">
+              <kbd className="hidden sm:inline-flex items-center font-mono bg-muted border border-border px-2.5 py-1 rounded-md text-[10px] shadow-sm font-bold text-muted-foreground tracking-wider">
                 ESC
               </kbd>
             </div>
@@ -306,20 +321,20 @@ export default function Navbar() {
                     <li key={idx}>
                       <button
                         onClick={(e) => handleSearchResultClick(item, e)}
-                        className="w-full flex items-center px-4 py-3.5 rounded-xl hover:bg-white/[0.08] focus:bg-white/[0.08] outline-none transition-colors group text-left"
+                        className="w-full flex items-center px-4 py-3.5 rounded-xl hover:bg-muted focus:bg-muted outline-none transition-colors group text-left"
                       >
                         <span className="text-2xl mr-4 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300 drop-shadow-md">
                           {item.icon}
                         </span>
                         <div className="flex flex-col flex-1">
-                          <span className="text-white text-[15px] font-semibold tracking-wide drop-shadow-sm">
+                          <span className="text-foreground text-[15px] font-semibold tracking-wide drop-shadow-sm">
                             {item.title}
                           </span>
-                          <span className="text-fuchsia-300/60 text-[10px] uppercase tracking-wider font-bold mt-0.5">
+                          <span className="text-fuchsia-500/80 text-[10px] uppercase tracking-wider font-bold mt-0.5">
                             {item.category}
                           </span>
                         </div>
-                        <span className="opacity-0 group-hover:opacity-100 text-white/40 text-xs font-semibold tracking-wider transition-opacity flex items-center gap-1">
+                        <span className="opacity-0 group-hover:opacity-100 text-muted-foreground text-xs font-semibold tracking-wider transition-opacity flex items-center gap-1">
                           Jump To
                           <span className="text-lg">↵</span>
                         </span>
@@ -332,10 +347,10 @@ export default function Navbar() {
                   <span className="text-5xl mb-4 opacity-40 grayscale filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
                     🛸
                   </span>
-                  <p className="text-white/60 font-semibold tracking-wide text-lg mb-1">
+                  <p className="text-foreground/60 font-semibold tracking-wide text-lg mb-1">
                     No results matching "{searchQuery}"
                   </p>
-                  <p className="text-white/30 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Try searching for "Events" or "Resources"
                   </p>
                 </div>
@@ -343,9 +358,9 @@ export default function Navbar() {
             </div>
 
             {/* Footer */}
-            <div className="px-5 py-2.5 bg-white/[0.01] border-t border-white/5 flex items-center justify-between text-[10px] text-white/30 font-semibold tracking-wide">
+            <div className="px-5 py-2.5 bg-muted/20 border-t border-border flex items-center justify-between text-[10px] text-muted-foreground font-semibold tracking-wide">
               <span>Quick Navigation Menu</span>
-              <span className="flex items-center gap-1 text-fuchsia-400/50">
+              <span className="flex items-center gap-1 text-fuchsia-500/70">
                 AWS I²IT System Dashboard
               </span>
             </div>

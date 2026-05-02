@@ -64,10 +64,10 @@ const DURATION = 20; // seconds for one full loop
 function TeamCard({ member }) {
   return (
     <div
-      className="group bg-white/[0.05] backdrop-blur-xl rounded-2xl py-10 px-8 border border-white/10 hover:border-fuchsia-400/50 transition-all duration-300 h-full flex flex-col items-center text-center"
+      className="group bg-card backdrop-blur-xl rounded-2xl py-10 px-8 border border-border hover:border-orange-500/50 transition-all duration-500 ease-out h-full flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:-translate-y-1.5"
       style={{ width: CARD_WIDTH, minWidth: CARD_WIDTH }}
     >
-      <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-fuchsia-400/50 transition-colors duration-300 mb-4">
+      <div className="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-border group-hover:border-orange-500/50 transition-colors duration-300 mb-4">
         <img
           src={member.image}
           alt={member.name}
@@ -76,16 +76,16 @@ function TeamCard({ member }) {
         />
       </div>
       <div>
-        <h3 className="text-lg font-bold text-white leading-tight">
+        <h3 className="text-lg font-bold text-foreground leading-tight">
           {member.name}
         </h3>
-        <p className="text-sm text-fuchsia-300/80 mt-1 mb-3">{member.role}</p>
+        <p className="text-sm text-muted-foreground mt-1 mb-3">{member.role}</p>
         <div className="flex justify-center gap-2">
           <a
             href={member.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-fuchsia-400 transition-colors"
+            className="text-muted-foreground hover:text-orange-500 transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
             <Linkedin size={20} />
@@ -208,7 +208,7 @@ export default function MeetUsSection() {
             <div className="flex items-center justify-center gap-4 mt-6">
               <button
                 onClick={() => scrollByCard(1)}
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-fuchsia-500/30 hover:border-fuchsia-400/50 transition-all duration-200"
+                className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:bg-orange-500/10 hover:border-orange-500/50 transition-all duration-200"
                 aria-label="Previous"
               >
                 <ChevronLeft size={20} />
@@ -216,7 +216,7 @@ export default function MeetUsSection() {
 
               <button
                 onClick={handleResume}
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-fuchsia-500/30 hover:border-fuchsia-400/50 transition-all duration-200"
+                className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:bg-orange-500/10 hover:border-orange-500/50 transition-all duration-200"
                 aria-label="Resume autoplay"
               >
                 <Play size={16} />
@@ -224,7 +224,7 @@ export default function MeetUsSection() {
 
               <button
                 onClick={() => scrollByCard(-1)}
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-fuchsia-500/30 hover:border-fuchsia-400/50 transition-all duration-200"
+                className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:bg-orange-500/10 hover:border-orange-500/50 transition-all duration-200"
                 aria-label="Next"
               >
                 <ChevronRight size={20} />

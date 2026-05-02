@@ -33,10 +33,10 @@ export default function ScrollFAQAccordion({
     <div
       className={cn("max-w-4xl mx-auto text-center py-16", className)}
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">
-        Technical Queries
+      <h2 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
+        Frequently Asked Questions
       </h2>
-      <p className="text-gray-500 mb-10 text-lg">
+      <p className="text-muted-foreground mb-10 text-lg">
         Everything you need to know about joining and succeeding in the AWS Community.
       </p>
 
@@ -52,10 +52,10 @@ export default function ScrollFAQAccordion({
               <Accordion.Trigger className="flex w-full items-center justify-start gap-x-4 cursor-default">
                 <div
                   className={cn(
-                    "relative flex items-center space-x-2 rounded-xl p-3 px-5 transition-all duration-300",
+                    "relative flex items-center space-x-2 rounded-xl p-4 transition-all duration-300",
                     openItem === item.id.toString()
-                      ? "bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30"
-                      : "bg-white/[0.05] backdrop-blur-md border border-white/10",
+                      ? "bg-accent text-accent-foreground border border-border shadow-sm"
+                      : "bg-card border border-border text-foreground hover:bg-muted",
                     questionClassName
                   )}
                 >
@@ -77,8 +77,8 @@ export default function ScrollFAQAccordion({
 
                 <span
                   className={cn(
-                    "text-gray-400",
-                    openItem === item.id.toString() && "text-fuchsia-400"
+                    "text-muted-foreground",
+                    openItem === item.id.toString() && "text-foreground"
                   )}
                 >
                   {openItem === item.id.toString() ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
@@ -97,10 +97,10 @@ export default function ScrollFAQAccordion({
                 transition={{ duration: 0.4 }}
                 className="overflow-hidden"
               >
-                <div className="flex justify-end ml-7 mt-4 md:ml-16">
+                <div className="flex justify-start mt-2">
                   <div
                     className={cn(
-                      "relative max-w-md rounded-2xl px-5 py-3 text-white text-base text-left bg-white/10 backdrop-blur-xl border border-white/15 shadow-lg",
+                      "relative w-full rounded-2xl px-5 py-4 text-muted-foreground text-base text-left bg-muted/50 border border-border shadow-sm",
                       answerClassName
                     )}
                   >

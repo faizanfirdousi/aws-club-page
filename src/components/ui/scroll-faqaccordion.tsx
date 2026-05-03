@@ -30,16 +30,7 @@ export default function ScrollFAQAccordion({
   const [openItem, setOpenItem] = React.useState<string | null>(null);
 
   return (
-    <div
-      className={cn("max-w-4xl mx-auto text-center py-16", className)}
-    >
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">
-        Technical Queries
-      </h2>
-      <p className="text-gray-500 mb-10 text-lg">
-        Everything you need to know about joining and succeeding in the AWS Community.
-      </p>
-
+    <div className={cn("w-full mx-auto", className)}>
       <Accordion.Root
         type="single"
         collapsible
@@ -47,41 +38,21 @@ export default function ScrollFAQAccordion({
         onValueChange={(value) => setOpenItem(value || null)}
       >
         {data.map((item) => (
-          <Accordion.Item value={item.id.toString()} key={item.id} className="mb-6">
+          <Accordion.Item value={item.id.toString()} key={item.id} className="mb-4">
             <Accordion.Header>
-              <Accordion.Trigger className="flex w-full items-center justify-start gap-x-4 cursor-default">
-                <div
-                  className={cn(
-                    "relative flex items-center space-x-2 rounded-xl p-3 px-5 transition-all duration-300",
-                    openItem === item.id.toString()
-                      ? "bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30"
-                      : "bg-white/[0.05] backdrop-blur-md border border-white/10",
-                    questionClassName
-                  )}
-                >
-                  {item.icon && (
-                    <span
-                      className={cn(
-                        "absolute bottom-6",
-                        item.iconPosition === "right" ? "right-0" : "left-0"
-                      )}
-                      style={{
-                        transform: item.iconPosition === "right" ? "rotate(7deg)" : "rotate(-4deg)",
-                      }}
-                    >
-                      {item.icon}
-                    </span>
-                  )}
-                  <span className="font-medium text-left">{item.question}</span>
+              <Accordion.Trigger className="flex w-full items-center justify-between gap-x-4 cursor-pointer group p-4 rounded-lg transition-colors duration-200" style={{ background: openItem === item.id.toString() ? 'rgba(255,255,255,0.06)' : 'transparent', border: '1px solid', borderColor: openItem === item.id.toString() ? 'rgba(255,255,255,0.1)' : 'transparent' }}
+                onMouseEnter={e => { if (openItem !== item.id.toString()) e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
+                onMouseLeave={e => { if (openItem !== item.id.toString()) e.currentTarget.style.background = 'transparent'; }}
+              >
+                <div className={cn("flex items-center space-x-2 text-left", questionClassName)}>
+                  <span className="text-base font-medium text-white transition-colors">{item.question}</span>
                 </div>
 
                 <span
-                  className={cn(
-                    "text-gray-400",
-                    openItem === item.id.toString() && "text-fuchsia-400"
-                  )}
+                  className="transition-colors duration-200"
+                  style={{ color: openItem === item.id.toString() ? '#FF9900' : 'rgba(255,255,255,0.3)' }}
                 >
-                  {openItem === item.id.toString() ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+                  {openItem === item.id.toString() ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4 group-hover:text-white" />}
                 </span>
               </Accordion.Trigger>
             </Accordion.Header>
@@ -91,21 +62,20 @@ export default function ScrollFAQAccordion({
                 initial={false}
                 animate={openItem === item.id.toString() ? "open" : "collapsed"}
                 variants={{
-                  open: { opacity: 1, height: "auto" },
-                  collapsed: { opacity: 0, height: 0 },
+                  open: { opacity: 1, height: "auto", marginTop: "12px" },
+                  collapsed: { opacity: 0, height: 0, marginTop: "0px" },
                 }}
-                transition={{ duration: 0.4 }}
-                className="overflow-hidden"
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden px-4"
               >
-                <div className="flex justify-end ml-7 mt-4 md:ml-16">
-                  <div
-                    className={cn(
-                      "relative max-w-md rounded-2xl px-5 py-3 text-white text-base text-left bg-white/10 backdrop-blur-xl border border-white/15 shadow-lg",
-                      answerClassName
-                    )}
-                  >
-                    {item.answer}
-                  </div>
+                <div
+                  className={cn(
+                    "text-sm leading-relaxed",
+                    answerClassName
+                  )}
+                  style={{ color: 'rgba(255,255,255,0.5)' }}
+                >
+                  {item.answer}
                 </div>
               </motion.div>
             </Accordion.Content>
